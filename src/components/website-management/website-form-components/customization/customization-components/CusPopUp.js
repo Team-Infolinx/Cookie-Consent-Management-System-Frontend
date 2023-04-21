@@ -39,7 +39,6 @@ const CusPopUp = (props) => {
         console.log(textBox01);
         console.log(textBox02);
         console.log(textBox03);
-
     }
 
     useEffect(() =>{
