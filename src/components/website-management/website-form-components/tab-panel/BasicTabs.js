@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import GeneralSettings from "../general-settings/GeneralSettings";
 import CookieSettings from "../cookie-settings/CookieSettings";
 import { useLocation } from "react-router-dom";
+import BannerCustomization from "../customization/BannerCustomization";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -98,7 +99,7 @@ export default function BasicTabs() {
         Privacy Regulation
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Banner Customization
+       <BannerCustomization />
       </TabPanel>
       <TabPanel value={value} index={4}>
         Script
