@@ -7,6 +7,7 @@ import GeneralSettings from "../general-settings/GeneralSettings";
 import CookieSettings from "../cookie-settings/CookieSettings";
 import { useLocation } from "react-router-dom";
 import PrivacyRegulation from "../privacy-regulation-settings/PrivacyRegulation";
+import BannerCustomization from "../customization/BannerCustomization";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -99,7 +100,7 @@ export default function BasicTabs() {
         <PrivacyRegulation />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Banner Customization
+       <BannerCustomization />
       </TabPanel>
       <TabPanel value={value} index={4}>
         Script
