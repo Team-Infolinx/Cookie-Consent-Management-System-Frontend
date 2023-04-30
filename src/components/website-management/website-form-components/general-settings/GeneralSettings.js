@@ -1,5 +1,7 @@
 import { Button, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
@@ -10,7 +12,7 @@ function GeneralSettings(props) {
     domain: "",
   });
 
-  const { configName, domain } = generalSettings;
+  const { websiteId, configName, domain } = generalSettings;
 
   // Related to error handling.
   const [configNameError, setConfigNameError] = useState(false);
@@ -82,10 +84,18 @@ function GeneralSettings(props) {
   // Save Website in Database.
   async function saveWebsite() {
     try {
-      const response = await axios.post(
-        `http://localhost:8080/api/v1/${props.userId}/addWebsite`,
-        generalSettings
-      );
+      let response;
+      if (websiteId) {
+        response = await axios.put(
+          `http://localhost:8080/api/v1/${props.userId}/updateWebsite`,
+          generalSettings
+        );
+      } else {
+        response = await axios.post(
+          `http://localhost:8080/api/v1/${props.userId}/addWebsite`,
+          generalSettings
+        );
+      }
       props.handleWebsiteId(response.data.websiteId);
       setGeneralSettings(response.data);
       props.handleNextTab();
@@ -138,6 +148,7 @@ function GeneralSettings(props) {
           type="submit"
           variant="contained"
           sx={{ mt: 4, bgcolor: "#00A5FF" }}
+          endIcon={<NavigateNextOutlinedIcon />}
         >
           Save Changes
         </Button>

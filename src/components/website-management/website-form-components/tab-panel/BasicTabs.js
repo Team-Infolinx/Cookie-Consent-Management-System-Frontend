@@ -8,6 +8,9 @@ import CookieSettings from "../cookie-settings/CookieSettings";
 import { useLocation } from "react-router-dom";
 import PrivacyRegulation from "../privacy-regulation-settings/PrivacyRegulation";
 import BannerCustomization from "../customization/BannerCustomization";
+import CookieScanner from "../scan-cookies/CookieScanner";
+import Categories from "../categories/Categories";
+import CookieCategorising from "../cookie-categorising/CookieCategorising";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -79,10 +82,12 @@ export default function BasicTabs() {
         {/* {console.log(state.websiteId)} */}
         <Tabs value={value} onChange={handleChange}>
           <Tab label="General Settings" {...a11yProps(0)} />
-          <Tab label="Cookie Settings" {...a11yProps(1)} />
-          <Tab label="Privacy Regulation" {...a11yProps(2)} />
-          <Tab label="Customization" {...a11yProps(3)} />
-          <Tab label="Script" {...a11yProps(4)} />
+          <Tab label="Scan Cookies" {...a11yProps(1)} />
+          <Tab label="Categories" {...a11yProps(2)} />
+          <Tab label="Cookie Categorising" {...a11yProps(3)} />
+          <Tab label="Privacy Regulation" {...a11yProps(4)} />
+          <Tab label="Customization" {...a11yProps(5)} />
+          <Tab label="Script" {...a11yProps(6)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0} sx={{ mt: 3, p: 4 }}>
@@ -94,15 +99,21 @@ export default function BasicTabs() {
         />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <CookieSettings websiteId={websiteId} />
+        <CookieScanner websiteId={websiteId} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <PrivacyRegulation />
+        <Categories websiteId={websiteId} />
       </TabPanel>
       <TabPanel value={value} index={3}>
-       <BannerCustomization />
+        <CookieCategorising websiteId={websiteId} />
       </TabPanel>
       <TabPanel value={value} index={4}>
+        <PrivacyRegulation />
+      </TabPanel>
+      <TabPanel value={value} index={5}>
+        <BannerCustomization />
+      </TabPanel>
+      <TabPanel value={value} index={6}>
         Script
       </TabPanel>
     </Box>
