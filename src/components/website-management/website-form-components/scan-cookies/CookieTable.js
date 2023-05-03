@@ -15,7 +15,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import React, { useState } from "react";
 import DeleteCookieDialog from "./DeleteCookieDialog";
 import axios from "axios";
-import EditCookieDialog from "./EditCookieDialog";
 
 export default function CookieTable(props) {
   const alert = (
@@ -52,7 +51,6 @@ export default function CookieTable(props) {
       const response = await axios.delete(
         `http://localhost:8080/api/v1/${websiteId}/${cookieId}/deleteCookie`
       );
-      console.log(response.data);
       if (response.data) {
         props.removeCookie(cookieId);
       }
@@ -60,25 +58,6 @@ export default function CookieTable(props) {
       console.log(error.message);
     }
   }
-
-  // Handle edit cookie.
-  // Related to edit cookie dialog.
-  // const [isOpenEdit, setIsOpenEdit] = useState(false);
-  // const [cookieToEdit, setCookieToEdit] = useState(null);
-
-  // function handleCloseEdit() {
-  //   setCookieToEdit(null);
-  //   setIsOpenEdit(false);
-  // }
-
-  // function handleOpenEdit(cookieToEdit) {
-  //   setCookieToEdit(cookieToEdit);
-  //   setIsOpenEdit(true);
-  // }
-
-  // function handleSaveClick() {
-  //   handleCloseEdit();
-  // }
 
   const table = (
     <TableContainer component={Paper}>
@@ -149,12 +128,6 @@ export default function CookieTable(props) {
         cookieToDelete={cookieToDelete}
         handleDelete={handleDeleteClick}
       />
-      {/* <EditCookieDialog
-        isOpen={isOpenEdit}
-        handleClose={handleCloseEdit}
-        cookieToEdit={cookieToEdit}
-        handleSaveClick={handleSaveClick}
-      /> */}
     </Box>
   );
 }

@@ -5,26 +5,8 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import Paper from "@mui/material/Paper";
-import axios from "axios";
 
 export default function DeleteCategoryDialog(props) {
-  //   async function handleDeleteButtonClick() {
-  //     try {
-  //       let websiteId = props.websiteId;
-  //       let categoryId = props.categoryToDelete.categoryId;
-  //       const response = await axios.delete(
-  //         `http://localhost:8080/api/v1/${websiteId}/${categoryId}/deleteCategory`
-  //       );
-  //       if (response.data) {
-  //         props.removeCategory(categoryId);
-  //         props.handleDeleteCategoryCancel();
-  //       }
-  //     } catch (error) {
-  //       console.error(error.message);
-  //     }
-  //   }
-
   return (
     <div>
       <Dialog
