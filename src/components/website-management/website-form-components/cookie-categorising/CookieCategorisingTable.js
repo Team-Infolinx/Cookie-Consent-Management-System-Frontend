@@ -11,31 +11,23 @@ import {
   TextField,
 } from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 export default function CookieCategorisingTable(props) {
-  const [cookieToCategorize, setCookieToCategorize] = useState({});
-
-  async function handleCookieCategorising(event) {
+  async function handleCookieCategorising(event, cookie) {
     const selectedCategoryName = event.target.value;
     const cookieCategory = props.cookieCategories.find(
       (category) => category.categoryName === selectedCategoryName
     );
     try {
-      console.log(cookieCategory);
       let cookieCategoryId = cookieCategory.categoryId;
-      let cookieId = cookieToCategorize.cookieId;
-      console.log(
-        "cookieId" + cookieId + " and categoryId : " + cookieCategoryId
-      );
+      let cookieId = cookie.cookieId;
       const response = await axios.put(
         `http://localhost:8080/api/v1/${cookieId}/${cookieCategoryId}/updateCategoryInCookie`
       );
 
       if (response.data) {
-        // console.log("Inside If" + JSON.stringify(response.data));
         props.updateCookies(response.data);
-        setCookieToCategorize({});
       }
     } catch (error) {
       console.log(error);
@@ -92,8 +84,7 @@ export default function CookieCategorisingTable(props) {
                         : ""
                     }
                     onChange={(event) => {
-                      setCookieToCategorize(cookie);
-                      handleCookieCategorising(event);
+                      handleCookieCategorising(event, cookie);
                     }}
                   >
                     {props.cookieCategories.map((category) => (
