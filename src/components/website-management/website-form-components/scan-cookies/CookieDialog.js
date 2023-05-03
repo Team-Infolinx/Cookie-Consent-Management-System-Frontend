@@ -9,26 +9,28 @@ import DialogTitle from "@mui/material/DialogTitle";
 import axios from "axios";
 import { Box } from "@mui/material";
 
-export default function AddCookieDialog(props) {
+export default function CookieDialog(props) {
   const [cookie, setCookie] = React.useState({
-    cookieId: "",
+    cookieId: null,
     cookieName: "",
     domain: "",
     path: "",
     expireDate: "",
   });
+  const { cookieName, domain, path, expireDate } = cookie;
 
   const [cookieNameError, setCookieNameError] = React.useState(false);
   const [cookieNameErrorMessage, setCookieNameErrorMessage] =
     React.useState("");
 
-  const { cookieName, domain, path, expireDate } = cookie;
+  React.useEffect(() => {
+    if (props.cookie) {
+      setCookie(props.cookie);
+    }
+  }, [props.cookie]);
 
-  function handleInputChanges(event) {
-    setCookie({
-      ...cookie,
-      [event.target.name]: event.target.value,
-    });
+  function handleOnChange(event) {
+    setCookie({ ...cookie, [event.target.name]: event.target.value });
   }
 
   function handleSaveButtonClick() {
@@ -40,57 +42,20 @@ export default function AddCookieDialog(props) {
       setCookieNameErrorMessage("Cookie name can not be empty.");
       return;
     }
-    saveNewCookie();
-    handleCancel();
-  }
-
-  function handleCancel() {
-    setCookie({
-      cookieName: "",
-      domain: "",
-      path: "",
-      expireDate: "",
-    });
-    setCookieNameError(false);
-    setCookieNameErrorMessage("");
-    props.handleCloseAddCookieDialog();
-  }
-
-  async function saveNewCookie() {
-    try {
-      let websiteId = props.websiteId;
-      const response = await axios.post(
-        `http://localhost:8080/api/v1/${websiteId}/addCookie`,
-        cookie
-      );
-      console.log("before check for null:" + JSON.stringify(response.data));
-      if (response.data) {
-        console.log("response data. data is not null", response.data);
-        props.addNewCookie(response.data);
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
+    props.handleSaveClick(cookie);
+    props.handleClose();
   }
 
   return (
     <Box>
-      <Button
-        variant="contained"
-        sx={{ mt: 2, bgcolor: "#00A5FF", mb: 1 }}
-        onClick={props.handleOpenAddCookieDialog}
-      >
-        Add Cookie
-      </Button>
       <Dialog
-        open={props.isOpenAddCookieDialog}
-        onClose={handleCancel}
+        open={props.isOpen}
+        onClose={props.handleClose}
         fullWidth={true}
         maxWidth="md"
       >
         <DialogTitle sx={{ color: "#004587", fontWeight: "600" }}>
-          {" "}
-          Add New Cookie
+          {cookie.cookieId ? "Edit Cookie" : "Add New Cookie"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText sx={{ color: "#004587" }}>
@@ -106,7 +71,7 @@ export default function AddCookieDialog(props) {
             fullWidth
             name="cookieName"
             value={cookieName}
-            onChange={handleInputChanges}
+            onChange={handleOnChange}
             error={cookieNameError}
             helperText={cookieNameErrorMessage}
           />
@@ -119,7 +84,7 @@ export default function AddCookieDialog(props) {
             fullWidth
             name="domain"
             value={domain}
-            onChange={handleInputChanges}
+            onChange={handleOnChange}
           />
           <TextField
             autoComplete="off"
@@ -130,7 +95,7 @@ export default function AddCookieDialog(props) {
             fullWidth
             name="path"
             value={path}
-            onChange={handleInputChanges}
+            onChange={handleOnChange}
           />
           <TextField
             disabled
@@ -142,12 +107,12 @@ export default function AddCookieDialog(props) {
             fullWidth
             name="expireDate"
             value={expireDate}
-            onChange={handleInputChanges}
+            onChange={handleOnChange}
           />
         </DialogContent>
         <DialogActions sx={{ pr: "24px", pb: "16px" }}>
           <Button
-            onClick={handleCancel}
+            onClick={props.handleClose}
             sx={{ bgcolor: "#00A5FF", color: "white" }}
             variant="contained"
           >

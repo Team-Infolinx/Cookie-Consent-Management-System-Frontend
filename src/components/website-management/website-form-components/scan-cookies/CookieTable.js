@@ -117,9 +117,12 @@ export default function CookieTable(props) {
               <TableCell align="left">{cookie.expireDate}</TableCell>
               <TableCell align="left">expire time</TableCell>
               <TableCell align="left">
-                {/* <IconButton size="small" onClick={() => handleOpenEdit(cookie)}>
+                <IconButton
+                  size="small"
+                  onClick={() => props.handleEditCookie(cookie)}
+                >
                   <EditIcon />
-                </IconButton> */}
+                </IconButton>
                 <IconButton size="small" onClick={() => handleOpen(cookie)}>
                   <DeleteIcon />
                 </IconButton>

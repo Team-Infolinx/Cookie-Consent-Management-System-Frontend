@@ -5,7 +5,7 @@ import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutl
 import React, { useEffect, useState } from "react";
 import CookieTable from "./CookieTable";
 import axios from "axios";
-import AddCookieDialog from "./AddCookieDialog";
+import CookieDialog from "./CookieDialog";
 
 export default function CookieScanner(props) {
   const [cookies, setCookies] = useState([]);
@@ -31,15 +31,6 @@ export default function CookieScanner(props) {
     }
   }
 
-  // Add new cookie.
-  const [isOpenAddCookieDialog, setIsOpenAddCookieDialog] = useState(false);
-
-  function handleOpenAddCookieDialog() {
-    setIsOpenAddCookieDialog(true);
-  }
-  function handleCloseAddCookieDialog() {
-    setIsOpenAddCookieDialog(false);
-  }
   function addNewCookie(newCookie) {
     setCookies([...cookies, newCookie]);
   }
@@ -56,6 +47,66 @@ export default function CookieScanner(props) {
       cookie.cookieId === updatedCookie.cookieId ? updatedCookie : cookie
     );
     setCookies(newCookies);
+  }
+
+  // Add Cookie and Edit Cookie dialog box.
+  const [isOpenDialog, setIsOpenDialog] = useState(false);
+  const [selectedCookie, setSelectedCookie] = useState({
+    cookieId: null,
+    cookieName: "",
+    domain: "",
+    path: "",
+    expireDate: "",
+  });
+
+  function handleAddCookie() {
+    setIsOpenDialog(true);
+    setSelectedCookie({
+      cookieId: null,
+      cookieName: "",
+      domain: "",
+      path: "",
+      expireDate: "",
+    });
+  }
+
+  function handleEditCookie(cookieToEdit) {
+    setSelectedCookie(cookieToEdit);
+    setIsOpenDialog(true);
+  }
+
+  function handleCancelClick() {
+    setIsOpenDialog(false);
+  }
+
+  async function handleSaveClick(cookie) {
+    if (selectedCookie.cookieId) {
+      try {
+        let websiteId = props.websiteId;
+        const response = await axios.put(
+          `http://localhost:8080/api/v1/${websiteId}/updateCookie`,
+          cookie
+        );
+        if (response.data) {
+          updateCookie(response.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      try {
+        let websiteId = props.websiteId;
+        const response = await axios.post(
+          `http://localhost:8080/api/v1/${websiteId}/addCookie`,
+          cookie
+        );
+        if (response.data) {
+          addNewCookie(response.data);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
   }
 
   return (
@@ -81,17 +132,24 @@ export default function CookieScanner(props) {
         To manually add a new cookie to your consent management settings, please
         click on the "Add Cookie" button below.
       </Typography>
-      <AddCookieDialog
-        isOpenAddCookieDialog={isOpenAddCookieDialog}
-        handleOpenAddCookieDialog={handleOpenAddCookieDialog}
-        handleCloseAddCookieDialog={handleCloseAddCookieDialog}
-        addNewCookie={addNewCookie}
-        websiteId={props.websiteId}
+      <Button
+        variant="contained"
+        sx={{ mt: 2, bgcolor: "#00A5FF", mb: 1 }}
+        onClick={handleAddCookie}
+      >
+        Add Cookie
+      </Button>
+      <CookieDialog
+        isOpen={isOpenDialog}
+        handleClose={handleCancelClick}
+        cookie={selectedCookie}
+        handleSaveClick={handleSaveClick}
       />
       <CookieTable
         cookies={cookies}
         websiteId={props.websiteId}
         removeCookie={removeCookie}
+        handleEditCookie={handleEditCookie}
       />
       <Box sx={{ mt: 3, display: "flex", justifyContent: "space-between" }}>
         <Button startIcon={<ArrowBackIosNewOutlinedIcon />}>Back</Button>
