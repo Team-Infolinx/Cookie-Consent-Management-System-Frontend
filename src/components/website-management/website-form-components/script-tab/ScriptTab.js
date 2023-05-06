@@ -1,4 +1,6 @@
 import { Box, Button, IconButton, Typography } from "@mui/material";
+import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
+import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import React from "react";
 
@@ -44,6 +46,16 @@ export default function ScriptTab() {
         <Box>
           <Typography>This is the script of theh site</Typography>
         </Box>
+      </Box>
+      <Box sx={{ mt: 3, display: "flex", justifyContent: "space-between" }}>
+        <Button startIcon={<ArrowBackIosNewOutlinedIcon />}>Back</Button>
+        <Button
+          endIcon={<NavigateNextOutlinedIcon />}
+          variant="contained"
+          sx={{ bgcolor: "#00A5FF" }}
+        >
+          Finish
+        </Button>
       </Box>
     </Box>
   );
