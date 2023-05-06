@@ -11,6 +11,7 @@ import BannerCustomization from "../customization/BannerCustomization";
 import CookieScanner from "../scan-cookies/CookieScanner";
 import Categories from "../categories/Categories";
 import CookieCategorising from "../cookie-categorising/CookieCategorising";
+import ScriptTab from "../script-tab/ScriptTab";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -114,7 +115,7 @@ export default function BasicTabs() {
         <BannerCustomization />
       </TabPanel>
       <TabPanel value={value} index={6}>
-        Script
+        <ScriptTab />
       </TabPanel>
     </Box>
   );
