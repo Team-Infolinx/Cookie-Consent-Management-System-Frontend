@@ -72,7 +72,7 @@ const CusPopUp = (props) => {
                 <DialogContent>
                         <div className={"dialogContent-container"} style={{flexDirection:"row",width:"800px",justifyContent:"space-between"}}>
                             <div style={{paddingTop:10,paddingBottom:10}}><TextField sx={{width:'50ch'}} id={data.templateId} label="Template Name" variant="outlined" value={textBox01} onChange={(e) =>setTextBox01(e.target.value) }/></div>
-                            <div style={{paddingTop:10,paddingBottom:10}}><TextField sx={{width:'50ch'}} id={data.templateId} label="Privacy Regulation Type" variant="outlined" value={textBox02} onChange={(e) =>setTextBox02(e.target.value)} /></div>
+                            <div style={{paddingTop:10,paddingBottom:10}}><TextField sx={{width:'50ch'}} id={data.templateId} label="Privacy Regulation Type" value={textBox02} onChange={(e) =>setTextBox02(e.target.value)} /></div>
                             <div style={{paddingTop:10,paddingBottom:10}}><TextField sx={{width:'50ch'}} id={data.templateId} label="Content" variant="outlined" value={textBox03} onChange={(e) =>setTextBox03(e.target.value)} multiline={10} /></div>
                         </div>
 

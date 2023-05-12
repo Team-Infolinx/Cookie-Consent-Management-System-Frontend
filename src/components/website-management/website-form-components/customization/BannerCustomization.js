@@ -1,3 +1,4 @@
+/*
 import React, {useEffect, useState} from "react";
 import {Button, Grid, Switch} from "@mui/material";
 import Box from '@mui/material/Box';
@@ -109,7 +110,7 @@ function BannerCustomization() {
 
     const[openPopup,setOpenPopup] = useState(false);
 
-    /*Passing data to CusPopUp.js*/
+    /!*Passing data to CusPopUp.js*!/
     const[selectedData,setSelectedData] = useState([]);
 
 
@@ -162,8 +163,6 @@ function BannerCustomization() {
             }}>
 
             <Typography variant={"h5"} sx={{color:"#004587",pb:{lg:3,md: 3, sm:3, xs: 3}}} fontWeight={"Bold"}>Bannner Templates</Typography>
-
-
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
@@ -187,17 +186,20 @@ function BannerCustomization() {
                                 <StyledTableCell align="center"><Switch /></StyledTableCell>
                                 <StyledTableCell align="center"><Button onClick={() => editButtonAction(template)} startIcon={<BorderColorIcon />}>Edit</Button></StyledTableCell>
                             </StyledTableRow>
+
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
 
-            {/*Dialog box.*/}
+            {/!*Dialog box.*!/}
             <CusPopUp openPopup={openPopup}  data={selectedData} handleClose={handleClose} getTemps={loadTemplates}/>
         </Box>
 
-        <Box
-            sx={{
+        {/!*delete only grid tag*!/}
+        <Grid>
+
+        <Box sx={{
                 width: 1500,
                 height: "auto",
                 backgroundColor: '#fefefe',
@@ -211,7 +213,7 @@ function BannerCustomization() {
             }}>
             <Typography variant={"h5"} sx={{color:"#004587",pb:{lg:3,md: 3, sm:3, xs: 3}}} fontWeight={"Bold"}>Customization</Typography>
 
-            {/*sx={{flexDirection: { lg:"row",sm: "column-reverse", xs: "column-reverse"}}}*/}
+            {/!*sx={{flexDirection: { lg:"row",sm: "column-reverse", xs: "column-reverse"}}}*!/}
             <Grid container  spacing={2}>
                 <Grid container item direction="column" justify={"center"} xs={3}  lg={3} xl={3}>
                     <Typography variant={"h5"} sx={{color:"#004587",pb:{lg:3,md: 3, sm:3, xs: 3}}} fontWeight={"Bold"}>Settings</Typography>
@@ -220,7 +222,7 @@ function BannerCustomization() {
 
                     <CustSelectBox name={"Banner Template"}  items={bannerValues} fun={handleChangeTemplate}/>
 
-                    {/*templates[0].templateName*/}
+                    {/!*templates[0].templateName*!/}
                     <Typography variant={"h6"} sx={{color:"#00A5FF",pb:{lg:3,md: 3, sm:3, xs: 3},pt:2}} fontWeight={"Bold"}>Banner Position</Typography>
 
                     <CustSelectBox name={"Banner Position"}  fun={handleChangeTop} items={bannerPosition} />
@@ -245,7 +247,7 @@ function BannerCustomization() {
                         borderRadius:10,
 
                     }}>
-                        {/*Cookie Banner.*/}
+                        {/!*Cookie Banner.*!/}
                         <div style={{
                             width:'350px',
                             height:"250px",
@@ -259,7 +261,6 @@ function BannerCustomization() {
                             borderRadius:10
 
                         }}>
-
 
                             <div className={"banner-container"} style={{flexDirection:"row",
                                 paddingLeft:10,
@@ -296,6 +297,7 @@ function BannerCustomization() {
                 </Grid>
             </Grid>
         </Box>
+        </Grid>
     </Grid>
     );
 }
@@ -306,3 +308,4 @@ export default BannerCustomization;
 
 
 
+*/

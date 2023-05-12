@@ -1,10 +1,11 @@
 import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 
 const CustSelectBox = (props) =>{
-        const {name,fun,items} = props;
+
+        const {name,fun,items,width} = props;
     return(
         <div className="Select-Box">
-            <FormControl fullWidth>
+            <FormControl sx={{ m: 1, minWidth: {width} }}>
                 <InputLabel id={name}>{name}</InputLabel>
                 <Select
                     label={name}
