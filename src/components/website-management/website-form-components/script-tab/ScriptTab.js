@@ -1,10 +1,25 @@
-import { Box, Button, IconButton, Typography } from "@mui/material";
+import { Box, Button, IconButton, TextField, Typography } from "@mui/material";
 import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import React from "react";
+import React, { useState } from "react";
 
-export default function ScriptTab() {
+export default function ScriptTab(props) {
+  const [script, setScript] = useState(
+    `<script\n  src="https://team-infolinx.github.io/Websafe-Script/script/cookie-banner.js?"\n  websiteId=${props.websiteId}\n></script>`
+  );
+
+  // Hanlde copy the text icon click.
+  const handleCopyScript = () => {
+    navigator.clipboard
+      .writeText(script)
+      .then(() => {
+        console.log("Script copied to clipboard!");
+      })
+      .catch((error) => {
+        console.error("Error copying script to clipboard:", error);
+      });
+  };
   return (
     <Box>
       <Typography
@@ -39,12 +54,23 @@ export default function ScriptTab() {
           <Typography sx={{ fontWeight: 600 }} color="#004587">
             script
           </Typography>
-          <IconButton variant="outlined" sx={{ color: "#004587" }}>
+          <IconButton
+            variant="outlined"
+            sx={{ color: "#004587" }}
+            onClick={handleCopyScript}
+          >
             <ContentCopyIcon fontSize="small" />
           </IconButton>
         </Box>
         <Box>
-          <Typography>This is the script of theh site</Typography>
+          <TextField
+            disabled
+            multiline
+            rows={4}
+            variant="outlined"
+            fullWidth
+            value={script}
+          />
         </Box>
       </Box>
       <Box sx={{ mt: 3, display: "flex", justifyContent: "space-between" }}>

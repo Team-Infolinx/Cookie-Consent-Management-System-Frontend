@@ -115,7 +115,7 @@ export default function BasicTabs() {
         <BannerCustomization />
       </TabPanel>
       <TabPanel value={value} index={6}>
-        <ScriptTab />
+        <ScriptTab websiteId={websiteId} />
       </TabPanel>
     </Box>
   );
