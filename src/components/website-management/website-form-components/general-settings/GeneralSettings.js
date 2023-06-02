@@ -119,8 +119,8 @@ function GeneralSettings(props) {
     >
       <TextField
         required
-        label="Configuration Name"
-        placeholder="Enter your configuration name here..."
+        label="Website Name"
+        placeholder="Enter your website name here..."
         size="normal"
         fullWidth
         sx={{ mt: 3 }}
@@ -132,8 +132,8 @@ function GeneralSettings(props) {
       ></TextField>
       <TextField
         required
-        label="Domain"
-        placeholder="Enter your domain here..."
+        label="Domain Name"
+        placeholder="Enter your domain name here..."
         size="normal"
         fullWidth
         sx={{ mt: 3 }}

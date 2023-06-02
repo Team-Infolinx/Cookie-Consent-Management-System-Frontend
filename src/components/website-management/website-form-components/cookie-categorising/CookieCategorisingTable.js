@@ -1,5 +1,6 @@
 import {
   Alert,
+  Button,
   MenuItem,
   Paper,
   Table,
@@ -65,7 +66,7 @@ export default function CookieCategorisingTable(props) {
               <TableCell align="left">{cookie.cookieName}</TableCell>
               <TableCell align="left">{cookie.path}</TableCell>
               <TableCell align="left">{cookie.expireDate}</TableCell>
-              <TableCell align="left">expire time</TableCell>
+              <TableCell align="left">{cookie.expireTime}</TableCell>
               <TableCell align="left">
                 {props.cookieCategories.length === 0 ? (
                   <Alert severity="error">

@@ -3,6 +3,7 @@ import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function ScriptTab(props) {
   const [script, setScript] = useState(
@@ -74,14 +75,21 @@ export default function ScriptTab(props) {
         </Box>
       </Box>
       <Box sx={{ mt: 3, display: "flex", justifyContent: "space-between" }}>
-        <Button startIcon={<ArrowBackIosNewOutlinedIcon />}>Back</Button>
         <Button
-          endIcon={<NavigateNextOutlinedIcon />}
-          variant="contained"
-          sx={{ bgcolor: "#00A5FF" }}
+          startIcon={<ArrowBackIosNewOutlinedIcon />}
+          onClick={props.handleBackTab}
         >
-          Finish
+          Back
         </Button>
+        <Link to={"/user/websites"}>
+          <Button
+            endIcon={<NavigateNextOutlinedIcon />}
+            variant="contained"
+            sx={{ bgcolor: "#00A5FF" }}
+          >
+            Finish
+          </Button>
+        </Link>
       </Box>
     </Box>
   );

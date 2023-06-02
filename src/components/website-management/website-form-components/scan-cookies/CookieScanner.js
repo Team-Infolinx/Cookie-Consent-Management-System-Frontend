@@ -9,10 +9,12 @@ import CookieDialog from "./CookieDialog";
 
 export default function CookieScanner(props) {
   const [cookies, setCookies] = useState([]);
+  const [cookieCategories, setCookieCategories] = useState([]);
 
   useEffect(() => {
     if (props.websiteId) {
       getAllCookies();
+      getAllCookieCategories();
     }
   }, [props.websiteId]);
 
@@ -25,6 +27,21 @@ export default function CookieScanner(props) {
       );
       if (response.data) {
         setCookies(response.data);
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
+  //  Get all existing cookie categories.
+  async function getAllCookieCategories() {
+    try {
+      let websiteId = props.websiteId;
+      const response = await axios.get(
+        `http://localhost:8080/api/v1/${websiteId}/getCookieCategories`
+      );
+      if (response.data) {
+        setCookieCategories(response.data);
       }
     } catch (error) {
       console.error(error.message);
@@ -56,7 +73,8 @@ export default function CookieScanner(props) {
     cookieName: "",
     domain: "",
     path: "",
-    expireDate: "",
+    durationUnit: "",
+    expireDuration: "",
   });
 
   function handleAddCookie() {
@@ -66,7 +84,8 @@ export default function CookieScanner(props) {
       cookieName: "",
       domain: "",
       path: "",
-      expireDate: "",
+      durationUnit: "",
+      expireDuration: "",
     });
   }
 
@@ -109,36 +128,37 @@ export default function CookieScanner(props) {
     }
   }
 
+  // Related to cookie categorizing.
+  function updateCookies(updatedCookie) {
+    const updatedCookies = cookies.map((cookie) =>
+      cookie.cookieId === updatedCookie.cookieId ? updatedCookie : cookie
+    );
+    setCookies(updatedCookies);
+  }
+
   return (
     <Box>
-      <Typography
-        variant="h6"
-        sx={{ color: "#004587", fontWeight: "900", mb: 1, mt: 1 }}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          mb: 3,
+        }}
       >
-        Scan Website for Cookies.
-      </Typography>
-      <Typography variant="body1" sx={{ color: "#004587" }} fontSize={16}>
-        Please click on the "Scan Cookies" button below to automatically scan
-        for cookies on your website.
-      </Typography>
-      <Button
-        variant="contained"
-        sx={{ mt: 2, bgcolor: "#00A5FF", mb: 2 }}
-        startIcon={<DocumentScannerIcon />}
-      >
-        Scan Cookies
-      </Button>
-      <Typography variant="body1" sx={{ color: "#004587" }} fontSize={16}>
-        To manually add a new cookie to your consent management settings, please
-        click on the "Add Cookie" button below.
-      </Typography>
-      <Button
-        variant="contained"
-        sx={{ mt: 2, bgcolor: "#00A5FF", mb: 1 }}
-        onClick={handleAddCookie}
-      >
-        Add Cookie
-      </Button>
+        <Button variant="outlined" sx={{ mr: 1 }} onClick={handleAddCookie}>
+          Add Cookie
+        </Button>
+        <Button
+          variant="contained"
+          sx={{ bgcolor: "#00A5FF" }}
+          startIcon={<DocumentScannerIcon />}
+        >
+          Scan Cookies
+        </Button>
+      </Box>
+
       <CookieDialog
         isOpen={isOpenDialog}
         handleClose={handleCancelClick}
@@ -147,16 +167,24 @@ export default function CookieScanner(props) {
       />
       <CookieTable
         cookies={cookies}
+        cookieCategories={cookieCategories}
+        updateCookies={updateCookies}
         websiteId={props.websiteId}
         removeCookie={removeCookie}
         handleEditCookie={handleEditCookie}
       />
       <Box sx={{ mt: 3, display: "flex", justifyContent: "space-between" }}>
-        <Button startIcon={<ArrowBackIosNewOutlinedIcon />}>Back</Button>
+        <Button
+          startIcon={<ArrowBackIosNewOutlinedIcon />}
+          onClick={props.handleBackTab}
+        >
+          Back
+        </Button>
         <Button
           endIcon={<NavigateNextOutlinedIcon />}
           variant="contained"
           sx={{ bgcolor: "#00A5FF" }}
+          onClick={props.handleNextTab}
         >
           Save Changes
         </Button>

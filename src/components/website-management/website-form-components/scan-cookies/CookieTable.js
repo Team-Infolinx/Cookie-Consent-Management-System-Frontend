@@ -1,4 +1,4 @@
-import { Alert, Box, Typography } from "@mui/material";
+import { Alert, Box, MenuItem, TextField, Typography } from "@mui/material";
 import {
   Table,
   TableCell,
@@ -59,6 +59,27 @@ export default function CookieTable(props) {
     }
   }
 
+  // Related to cookie categorising.
+  async function handleCookieCategorising(event, cookie) {
+    const selectedCategoryName = event.target.value;
+    const cookieCategory = props.cookieCategories.find(
+      (category) => category.categoryName === selectedCategoryName
+    );
+    try {
+      let cookieCategoryId = cookieCategory.categoryId;
+      let cookieId = cookie.cookieId;
+      const response = await axios.put(
+        `http://localhost:8080/api/v1/${cookieId}/${cookieCategoryId}/updateCategoryInCookie`
+      );
+
+      if (response.data) {
+        props.updateCookies(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const table = (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650, overflow: "hidden" }}>
@@ -74,10 +95,10 @@ export default function CookieTable(props) {
               Path
             </TableCell>
             <TableCell align="left" sx={{ color: "white" }}>
-              Expire Date
+              Duration
             </TableCell>
             <TableCell align="left" sx={{ color: "white" }}>
-              Expire Time
+              Category
             </TableCell>
             <TableCell align="left" sx={{ color: "white" }}>
               Actions
@@ -91,10 +112,47 @@ export default function CookieTable(props) {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell align="left">{cookie.cookieName}</TableCell>
-              <TableCell align="left">{cookie.domain}</TableCell>
-              <TableCell align="left">{cookie.path}</TableCell>
-              <TableCell align="left">{cookie.expireDate}</TableCell>
-              <TableCell align="left">expire time</TableCell>
+              <TableCell align="left">
+                {cookie.domain ? cookie.domain : "-"}
+              </TableCell>
+              <TableCell align="left">
+                {cookie.path ? cookie.path : "-"}
+              </TableCell>
+              <TableCell align="left">
+                {cookie.expireDuration ? cookie.expireDuration : "-"}{" "}
+                {cookie.durationUnit}
+              </TableCell>
+              <TableCell align="left">
+                {props.cookieCategories.length === 0 ? (
+                  <Alert severity="error">
+                    Add Category to enable selection!
+                  </Alert>
+                ) : (
+                  <TextField
+                    select
+                    label="Category"
+                    fullWidth
+                    size="small"
+                    value={
+                      cookie.cookieCategory
+                        ? cookie.cookieCategory.categoryName
+                        : ""
+                    }
+                    onChange={(event) => {
+                      handleCookieCategorising(event, cookie);
+                    }}
+                  >
+                    {props.cookieCategories.map((category) => (
+                      <MenuItem
+                        key={category.categoryId}
+                        value={category.categoryName}
+                      >
+                        {category.categoryName}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                )}
+              </TableCell>
               <TableCell align="left">
                 <IconButton
                   size="small"
@@ -115,12 +173,12 @@ export default function CookieTable(props) {
 
   return (
     <Box>
-      <Typography
+      {/* <Typography
         variant="h6"
         sx={{ color: "#004587", fontWeight: "900", mb: 1, mt: 1 }}
       >
         Cookies in your website.
-      </Typography>
+      </Typography> */}
       {props.cookies.length === 0 ? alert : table}
       <DeleteCookieDialog
         isOpen={isOpen}

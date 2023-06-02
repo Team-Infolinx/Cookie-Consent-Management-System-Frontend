@@ -154,23 +154,32 @@ export default function Categories(props) {
 
   return (
     <Box>
-      <Typography
+      {/* <Typography
         variant="h6"
         sx={{ color: "#004587", fontWeight: "900", mb: 1, mt: 1 }}
       >
         Configure Your Website's Cookie Categories.
-      </Typography>
-      <Typography variant="body1" sx={{ color: "#004587" }} fontSize={16}>
+      </Typography> */}
+      {/* <Typography variant="body1" sx={{ color: "#004587" }} fontSize={16}>
         To add a new cookie category for your website, simply click on the "Add
         Category" button below and fill out the required information.
-      </Typography>
-      <Button
-        variant="contained"
-        sx={{ mt: 2, mb: 5, bgcolor: "#00A5FF" }}
-        onClick={handleAddCategory}
+      </Typography> */}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "raw",
+          justifyContent: "flex-end",
+        }}
       >
-        Add Category
-      </Button>
+        <Button
+          variant="contained"
+          sx={{ mt: 2, mb: 5, bgcolor: "#00A5FF" }}
+          onClick={handleAddCategory}
+        >
+          Add Category
+        </Button>
+      </Box>
+
       <CategoryDialogBox
         isOpen={isDialogOpen}
         handleClose={handleCancelClick}
@@ -185,11 +194,17 @@ export default function Categories(props) {
         handleDeleteClick={handleDeleteClick}
       />
       <Box sx={{ mt: 3, display: "flex", justifyContent: "space-between" }}>
-        <Button startIcon={<ArrowBackIosNewOutlinedIcon />}>Back</Button>
+        <Button
+          startIcon={<ArrowBackIosNewOutlinedIcon />}
+          onClick={props.handleBackTab}
+        >
+          Back
+        </Button>
         <Button
           endIcon={<NavigateNextOutlinedIcon />}
           variant="contained"
           sx={{ bgcolor: "#00A5FF" }}
+          onClick={props.handleNextTab}
         >
           Save Changes
         </Button>

@@ -71,48 +71,46 @@ function Websites() {
   }
 
   return (
-    <Box sx={{ p: 5 }}>
+    <Box sx={{ p: 5, pt: 2 }}>
       <Box sx={{ pl: 0 }}>
         <Typography variant="h3" sx={{ color: "#004587", fontWeight: "800" }}>
           Websites
         </Typography>
         <Typography
           variant="h6"
-          sx={{ color: "#004587", fontWeight: "900", mb: 3 }}
-        >
-          You've Authorized...
-        </Typography>
-        <Typography
-          variant="h5"
-          sx={{ color: "#004587", fontWeight: "900", mb: 2 }}
+          sx={{ color: "#004587", fontWeight: "900", mb: 2, mt: 1 }}
         >
           Manage all your websites' cookie consent settings in one place.
         </Typography>
-        <Typography variant="body1" sx={{ color: "#004587" }} fontSize={16}>
+        {/* <Typography variant="body1" sx={{ color: "#004587" }} fontSize={16}>
           Welcome to the Websites page of your Cookie Consent Management system.
           Here you can view, add, and manage all the websites that you have
           included in your cookie consent banner.
-        </Typography>
+        </Typography> */}
       </Box>
       <Box sx={{ pl: 0 }}>
-        <Typography
-          variant="h6"
-          sx={{ color: "#004587", fontWeight: "900", mb: 1, mt: 3 }}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row-reverse",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
         >
-          Add Website:
-        </Typography>
-        <Typography variant="body1" sx={{ color: "#004587" }} fontSize={16}>
-          To add a new website to your cookie consent banner, simply click the
-          "Add Website" button. You will be prompted to enter the website name,
-          URL, and a brief description of the website.
-        </Typography>
-        <Button
-          variant="contained"
-          href="/user/websiteform"
-          sx={{ mt: 1, bgcolor: "#00A5FF", mb: 1 }}
-        >
-          ADD WEBSITE
-        </Button>
+          {/* <Typography
+            variant="h6"
+            sx={{ color: "#004587", fontWeight: "900", mb: 1, mt: 3 }}
+          >
+            Add Website
+          </Typography> */}
+          <Button
+            variant="contained"
+            href="/user/websiteform"
+            sx={{ mt: 1, bgcolor: "#00A5FF", mb: 1 }}
+          >
+            ADD WEBSITE
+          </Button>
+        </Box>
         <Box sx={{ pl: 0, mt: 3 }}>
           {websites.length === 0 ? (
             <Alert severity="info">

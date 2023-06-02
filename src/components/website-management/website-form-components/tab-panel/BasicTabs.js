@@ -83,12 +83,12 @@ export default function BasicTabs() {
         {/* {console.log(state.websiteId)} */}
         <Tabs value={value} onChange={handleChange}>
           <Tab label="General Settings" {...a11yProps(0)} />
-          <Tab label="Scan Cookies" {...a11yProps(1)} />
-          <Tab label="Categories" {...a11yProps(2)} />
-          <Tab label="Cookie Categorising" {...a11yProps(3)} />
-          <Tab label="Privacy Regulation" {...a11yProps(4)} />
-          <Tab label="Customization" {...a11yProps(5)} />
-          <Tab label="Script" {...a11yProps(6)} />
+          <Tab label="Categories" {...a11yProps(1)} />
+          <Tab label="Cookies" {...a11yProps(2)} />
+          {/* <Tab label="Cookie Categorising" {...a11yProps(3)} /> */}
+          <Tab label="Privacy Regulation" {...a11yProps(3)} />
+          <Tab label="Customization" {...a11yProps(4)} />
+          <Tab label="Script" {...a11yProps(5)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0} sx={{ mt: 3, p: 4 }}>
@@ -100,22 +100,31 @@ export default function BasicTabs() {
         />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <CookieScanner websiteId={websiteId} />
+        <Categories
+          websiteId={websiteId}
+          handleNextTab={handleNextTab}
+          handleBackTab={handleBackTab}
+        />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Categories websiteId={websiteId} />
+        <CookieScanner
+          websiteId={websiteId}
+          handleNextTab={handleNextTab}
+          handleBackTab={handleBackTab}
+        />
       </TabPanel>
-      <TabPanel value={value} index={3}>
+
+      {/* <TabPanel value={value} index={3}>
         <CookieCategorising websiteId={websiteId} />
-      </TabPanel>
-      <TabPanel value={value} index={4}>
+      </TabPanel> */}
+      <TabPanel value={value} index={3}>
         <PrivacyRegulation />
       </TabPanel>
-      <TabPanel value={value} index={5}>
+      <TabPanel value={value} index={4}>
         <BannerCustomization />
       </TabPanel>
-      <TabPanel value={value} index={6}>
-        <ScriptTab websiteId={websiteId} />
+      <TabPanel value={value} index={5}>
+        <ScriptTab websiteId={websiteId} handleBackTab={handleBackTab} />
       </TabPanel>
     </Box>
   );

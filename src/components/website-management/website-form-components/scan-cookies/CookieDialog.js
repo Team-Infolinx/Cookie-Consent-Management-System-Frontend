@@ -6,7 +6,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Box } from "@mui/material";
+import { Box, MenuItem } from "@mui/material";
 
 export default function CookieDialog(props) {
   const [cookie, setCookie] = React.useState({
@@ -14,9 +14,12 @@ export default function CookieDialog(props) {
     cookieName: "",
     domain: "",
     path: "",
-    expireDate: "",
+    durationUnit: "",
+    expireDuration: "",
   });
-  const { cookieName, domain, path, expireDate } = cookie;
+  const { cookieName, domain, path, durationUnit, expireDuration } = cookie;
+
+  const units = ["Minutes", "Hours", "Days", "Weeks", "Months", "Years"];
 
   const [cookieNameError, setCookieNameError] = React.useState(false);
   const [cookieNameErrorMessage, setCookieNameErrorMessage] =
@@ -47,16 +50,11 @@ export default function CookieDialog(props) {
 
   return (
     <Box>
-      <Dialog
-        open={props.isOpen}
-        onClose={props.handleClose}
-        fullWidth={true}
-        maxWidth="md"
-      >
+      <Dialog open={props.isOpen} onClose={props.handleClose} maxWidth="md">
         <DialogTitle sx={{ color: "#004587", fontWeight: "600" }}>
           {cookie.cookieId ? "Edit Cookie" : "Add New Cookie"}
         </DialogTitle>
-        <DialogContent>
+        <DialogContent sx={{ display: "flex", flexDirection: "column" }}>
           <DialogContentText sx={{ color: "#004587" }}>
             Please enter your cookie details.
           </DialogContentText>
@@ -67,7 +65,6 @@ export default function CookieDialog(props) {
             sx={{ mt: 2 }}
             variant="outlined"
             size="small"
-            fullWidth
             name="cookieName"
             value={cookieName}
             onChange={handleOnChange}
@@ -80,9 +77,8 @@ export default function CookieDialog(props) {
             sx={{ mt: 2 }}
             variant="outlined"
             size="small"
-            fullWidth
             name="domain"
-            value={domain}
+            value={domain ? domain : ""}
             onChange={handleOnChange}
           />
           <TextField
@@ -91,30 +87,41 @@ export default function CookieDialog(props) {
             sx={{ mt: 2 }}
             variant="outlined"
             size="small"
-            fullWidth
             name="path"
-            value={path}
+            value={path ? path : ""}
             onChange={handleOnChange}
           />
-          <TextField
-            disabled
-            autoComplete="off"
-            label="Expire Date"
-            sx={{ mt: 2 }}
-            variant="outlined"
-            size="small"
-            fullWidth
-            name="expireDate"
-            value={expireDate}
-            onChange={handleOnChange}
-          />
+          <Box sx={{ display: "flex", flexDirection: "row" }}>
+            <TextField
+              autoComplete="off"
+              type="number"
+              label="Cookie Duration"
+              sx={{ mt: 2 }}
+              variant="outlined"
+              size="small"
+              name="expireDuration"
+              value={expireDuration ? expireDuration : ""}
+              onChange={handleOnChange}
+            />
+            <TextField
+              select
+              label="Duration Unit"
+              sx={{ mt: 2, ml: 1 }}
+              size="small"
+              name="durationUnit"
+              value={durationUnit ? durationUnit : units[0]}
+              onChange={handleOnChange}
+            >
+              {units.map((unit) => (
+                <MenuItem key={unit} value={unit}>
+                  {unit}
+                </MenuItem>
+              ))}
+            </TextField>
+          </Box>
         </DialogContent>
         <DialogActions sx={{ pr: "24px", pb: "16px" }}>
-          <Button
-            onClick={props.handleClose}
-            sx={{ bgcolor: "#00A5FF", color: "white" }}
-            variant="contained"
-          >
+          <Button onClick={props.handleClose} variant="outlined">
             Cancel
           </Button>
           <Button
