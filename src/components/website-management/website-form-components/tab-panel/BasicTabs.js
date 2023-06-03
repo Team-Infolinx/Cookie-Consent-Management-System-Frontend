@@ -4,13 +4,11 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import GeneralSettings from "../general-settings/GeneralSettings";
-import CookieSettings from "../cookie-settings/CookieSettings";
 import { useLocation } from "react-router-dom";
 import PrivacyRegulation from "../privacy-regulation-settings/PrivacyRegulation";
 import BannerCustomization from "../customization/BannerCustomization";
 import CookieScanner from "../scan-cookies/CookieScanner";
 import Categories from "../categories/Categories";
-import CookieCategorising from "../cookie-categorising/CookieCategorising";
 import ScriptTab from "../script-tab/ScriptTab";
 
 function TabPanel(props) {
@@ -57,7 +55,6 @@ export default function BasicTabs() {
   function handleBackTab() {
     setValue(value - 1);
   }
-  //   END.
 
   // WebsiteId and UserID.
   const { state } = useLocation();
@@ -80,12 +77,10 @@ export default function BasicTabs() {
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        {/* {console.log(state.websiteId)} */}
         <Tabs value={value} onChange={handleChange}>
           <Tab label="General Settings" {...a11yProps(0)} />
           <Tab label="Categories" {...a11yProps(1)} />
           <Tab label="Cookies" {...a11yProps(2)} />
-          {/* <Tab label="Cookie Categorising" {...a11yProps(3)} /> */}
           <Tab label="Privacy Regulation" {...a11yProps(3)} />
           <Tab label="Customization" {...a11yProps(4)} />
           <Tab label="Script" {...a11yProps(5)} />
@@ -113,10 +108,6 @@ export default function BasicTabs() {
           handleBackTab={handleBackTab}
         />
       </TabPanel>
-
-      {/* <TabPanel value={value} index={3}>
-        <CookieCategorising websiteId={websiteId} />
-      </TabPanel> */}
       <TabPanel value={value} index={3}>
         <PrivacyRegulation />
       </TabPanel>

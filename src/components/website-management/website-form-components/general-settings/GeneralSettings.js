@@ -106,7 +106,7 @@ function GeneralSettings(props) {
 
   function isValidDomain(domain) {
     const pattern =
-      /^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,})(?:\/)?$/;
+      /^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,})(?:\/.*)?$/;
     return pattern.test(domain);
   }
 
