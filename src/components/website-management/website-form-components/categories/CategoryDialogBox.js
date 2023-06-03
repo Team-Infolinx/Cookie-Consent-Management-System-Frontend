@@ -16,9 +16,7 @@ export default function CategoryDialogBox(props) {
     categoryName: "",
     categoryDescription: "",
   });
-
   const { categoryName, categoryDescription } = category;
-
   const [errors, setErrors] = useState([false, false]);
   const [errorMessages, setErrorMessages] = useState(["", ""]);
 

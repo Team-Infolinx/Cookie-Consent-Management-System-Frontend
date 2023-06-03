@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Typography } from "@mui/material";
+import { Alert, Box, Button } from "@mui/material";
 import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import React, { useEffect, useState } from "react";
@@ -154,16 +154,6 @@ export default function Categories(props) {
 
   return (
     <Box>
-      {/* <Typography
-        variant="h6"
-        sx={{ color: "#004587", fontWeight: "900", mb: 1, mt: 1 }}
-      >
-        Configure Your Website's Cookie Categories.
-      </Typography> */}
-      {/* <Typography variant="body1" sx={{ color: "#004587" }} fontSize={16}>
-        To add a new cookie category for your website, simply click on the "Add
-        Category" button below and fill out the required information.
-      </Typography> */}
       <Box
         sx={{
           display: "flex",
@@ -179,7 +169,6 @@ export default function Categories(props) {
           Add Category
         </Button>
       </Box>
-
       <CategoryDialogBox
         isOpen={isDialogOpen}
         handleClose={handleCancelClick}

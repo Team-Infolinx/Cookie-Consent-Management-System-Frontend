@@ -21,6 +21,7 @@ export default function ScriptTab(props) {
         console.error("Error copying script to clipboard:", error);
       });
   };
+
   return (
     <Box>
       <Typography

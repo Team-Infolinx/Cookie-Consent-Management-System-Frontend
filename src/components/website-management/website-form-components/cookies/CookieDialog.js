@@ -1,4 +1,3 @@
-import * as React from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -7,9 +6,10 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Box, MenuItem } from "@mui/material";
+import React, { useEffect, useState } from "react";
 
 export default function CookieDialog(props) {
-  const [cookie, setCookie] = React.useState({
+  const [cookie, setCookie] = useState({
     cookieId: null,
     cookieName: "",
     domain: "",
@@ -18,14 +18,11 @@ export default function CookieDialog(props) {
     expireDuration: "",
   });
   const { cookieName, domain, path, durationUnit, expireDuration } = cookie;
-
   const units = ["Minutes", "Hours", "Days", "Weeks", "Months", "Years"];
+  const [cookieNameError, setCookieNameError] = useState(false);
+  const [cookieNameErrorMessage, setCookieNameErrorMessage] = useState("");
 
-  const [cookieNameError, setCookieNameError] = React.useState(false);
-  const [cookieNameErrorMessage, setCookieNameErrorMessage] =
-    React.useState("");
-
-  React.useEffect(() => {
+  useEffect(() => {
     if (props.cookie) {
       setCookie(props.cookie);
     }
@@ -38,7 +35,6 @@ export default function CookieDialog(props) {
   function handleSaveButtonClick() {
     setCookieNameError(false);
     setCookieNameErrorMessage("");
-
     if (cookieName === "" || cookieName === null) {
       setCookieNameError(true);
       setCookieNameErrorMessage("Cookie name can not be empty.");

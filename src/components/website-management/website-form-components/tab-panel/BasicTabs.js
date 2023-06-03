@@ -7,9 +7,9 @@ import GeneralSettings from "../general-settings/GeneralSettings";
 import { useLocation } from "react-router-dom";
 import PrivacyRegulation from "../privacy-regulation-settings/PrivacyRegulation";
 import BannerCustomization from "../customization/BannerCustomization";
-import CookieScanner from "../scan-cookies/CookieScanner";
+import CookiesTab from "../cookies/CookiesTab";
 import Categories from "../categories/Categories";
-import ScriptTab from "../script-tab/ScriptTab";
+import ScriptTab from "../script/ScriptTab";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -62,9 +62,7 @@ export default function BasicTabs() {
   const userId = 1000;
 
   React.useEffect(() => {
-    state ? console.log(true) : console.log(false);
     if (state !== null) {
-      console.log(state.websiteId);
       setWebsiteId(state.websiteId);
     }
   }, [state]);
@@ -102,7 +100,7 @@ export default function BasicTabs() {
         />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <CookieScanner
+        <CookiesTab
           websiteId={websiteId}
           handleNextTab={handleNextTab}
           handleBackTab={handleBackTab}

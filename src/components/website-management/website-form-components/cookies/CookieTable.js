@@ -1,4 +1,4 @@
-import { Alert, Box, MenuItem, TextField, Typography } from "@mui/material";
+import { Alert, Box, MenuItem, TextField } from "@mui/material";
 import {
   Table,
   TableCell,
@@ -9,7 +9,6 @@ import {
   TableBody,
   IconButton,
 } from "@mui/material";
-
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import React, { useState } from "react";
@@ -173,12 +172,6 @@ export default function CookieTable(props) {
 
   return (
     <Box>
-      {/* <Typography
-        variant="h6"
-        sx={{ color: "#004587", fontWeight: "900", mb: 1, mt: 1 }}
-      >
-        Cookies in your website.
-      </Typography> */}
       {props.cookies.length === 0 ? alert : table}
       <DeleteCookieDialog
         isOpen={isOpen}

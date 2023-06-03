@@ -7,7 +7,7 @@ import CookieTable from "./CookieTable";
 import axios from "axios";
 import CookieDialog from "./CookieDialog";
 
-export default function CookieScanner(props) {
+export default function CookiesTab(props) {
   const [cookies, setCookies] = useState([]);
   const [cookieCategories, setCookieCategories] = useState([]);
 

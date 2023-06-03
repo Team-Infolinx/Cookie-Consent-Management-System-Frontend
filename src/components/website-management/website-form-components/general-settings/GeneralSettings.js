@@ -11,7 +11,6 @@ function GeneralSettings(props) {
     configName: "",
     domain: "",
   });
-
   const { websiteId, configName, domain } = generalSettings;
 
   // Related to error handling.
