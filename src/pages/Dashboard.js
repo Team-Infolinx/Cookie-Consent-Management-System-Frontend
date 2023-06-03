@@ -31,35 +31,39 @@ export default function Dashboard() {
 
   const loadNoOfCookies = async (id) => {
     const result = await axios.get(
-      "http://localhost:8080/api/v1/user/getNoOfCookies/" + id
+      "http://websafe-backend-production.up.railway.app/api/v1/user/getNoOfCookies/" +
+        id
     );
     setNoOfCookies(result.data);
   };
 
   const loadNoOfConsent = async (id) => {
     const result = await axios.get(
-      "http://localhost:8080/api/v1/user/getNoOfConsent/" + id
+      "http://websafe-backend-production.up.railway.app/api/v1/user/getNoOfConsent/" +
+        id
     );
     setNoOfConsent(result.data);
   };
 
   const loadNoOfAcceptedConsent = async (id) => {
     const result = await axios.get(
-      "http://localhost:8080/api/v1/user/getNoOfAcceptedConsent/" + id
+      "http://websafe-backend-production.up.railway.app/api/v1/user/getNoOfAcceptedConsent/" +
+        id
     );
     setNoOfAcceptedConsent(result.data);
   };
 
   const loadAcceptanceRate = async (id) => {
     const result = await axios.get(
-      "http://localhost:8080/api/v1/user/getAcceptanceRate/" + id
+      "http://websafe-backend-production.up.railway.app/api/v1/user/getAcceptanceRate/" +
+        id
     );
     setAcceptanceRate(result.data);
   };
 
   const loadWebsites = async (id) => {
     const result = await axios.get(
-      "http://localhost:8080/api/v1/user/getWebsites"
+      "http://websafe-backend-production.up.railway.app/api/v1/user/getWebsites"
     );
     setWebsites(result.data);
   };
