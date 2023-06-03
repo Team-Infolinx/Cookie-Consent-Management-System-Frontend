@@ -11,10 +11,6 @@ export default function AppWidget({ value, title }) {
           textAlign: "center",
           borderRadius: "80px",
           backgroundColor: "primary.dark",
-          //   "&:hover": {
-          //     backgroundColor: "primary.main",
-          //     opacity: [0.9, 0.8, 0.7],
-          //   },
         }}
       >
         <Typography variant="h3" sx={{ color: "#000000" }}>
