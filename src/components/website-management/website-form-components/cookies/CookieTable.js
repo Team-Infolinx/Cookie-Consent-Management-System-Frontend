@@ -65,17 +65,18 @@ export default function CookieTable(props) {
       (category) => category.categoryName === selectedCategoryName
     );
     try {
+      let websiteId = props.websiteId;
       let cookieCategoryId = cookieCategory.categoryId;
       let cookieId = cookie.cookieId;
       const response = await axios.put(
-        `http://localhost:8080/api/v1/${cookieId}/${cookieCategoryId}/updateCategoryInCookie`
+        `http://localhost:8080/api/v1/${websiteId}/${cookieId}/${cookieCategoryId}/updateCategoryInCookie`
       );
 
       if (response.data) {
         props.updateCookies(response.data);
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   }
 

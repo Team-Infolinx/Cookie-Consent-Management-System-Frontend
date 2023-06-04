@@ -46,7 +46,12 @@ export default function CookieDialog(props) {
 
   return (
     <Box>
-      <Dialog open={props.isOpen} onClose={props.handleClose} maxWidth="md">
+      <Dialog
+        open={props.isOpen}
+        onClose={props.handleClose}
+        maxWidth="xs"
+        fullWidth={true}
+      >
         <DialogTitle sx={{ color: "#004587", fontWeight: "600" }}>
           {cookie.cookieId ? "Edit Cookie" : "Add New Cookie"}
         </DialogTitle>
@@ -91,7 +96,7 @@ export default function CookieDialog(props) {
             <TextField
               autoComplete="off"
               type="number"
-              label="Cookie Duration"
+              label="Duration"
               sx={{ mt: 2 }}
               variant="outlined"
               size="small"
@@ -101,12 +106,12 @@ export default function CookieDialog(props) {
             />
             <TextField
               select
-              label="Duration Unit"
-              sx={{ mt: 2, ml: 1 }}
+              label="Unit"
+              sx={{ mt: 2, ml: 1, width: "50%" }}
               size="small"
               name="durationUnit"
-              value={durationUnit ? durationUnit : units[0]}
-              onChange={handleOnChange}
+              value={durationUnit ? durationUnit : ""}
+              onChange={(event) => handleOnChange(event)}
             >
               {units.map((unit) => (
                 <MenuItem key={unit} value={unit}>
