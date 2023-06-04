@@ -2,7 +2,6 @@ import { Alert, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import WebsitesTable from "../components/website-management/websites-page-component/WebsitesTable";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
 
@@ -34,7 +33,6 @@ function Websites() {
   const [deletingWebsite, setDeletingWebsite] = useState();
 
   function handleOpenWebsiteDeleteDialog(websiteToDelete) {
-    console.log(websiteToDelete);
     setDeletingWebsite(websiteToDelete);
     setIsOpenWebsiteDialog(true);
   }
@@ -46,9 +44,6 @@ function Websites() {
 
   async function handleDeleteWebsiteClick() {
     try {
-      console.log("deleting website :", deletingWebsite);
-      console.log("userId :", userId);
-      // let userId = props.userId;
       let websiteId = deletingWebsite.websiteId;
       const response = await axios.delete(
         `http://localhost:8080/api/v1/${userId}/${websiteId}/deleteWebsite`
@@ -82,11 +77,6 @@ function Websites() {
         >
           Manage all your websites' cookie consent settings in one place.
         </Typography>
-        {/* <Typography variant="body1" sx={{ color: "#004587" }} fontSize={16}>
-          Welcome to the Websites page of your Cookie Consent Management system.
-          Here you can view, add, and manage all the websites that you have
-          included in your cookie consent banner.
-        </Typography> */}
       </Box>
       <Box sx={{ pl: 0 }}>
         <Box
@@ -97,12 +87,6 @@ function Websites() {
             alignItems: "center",
           }}
         >
-          {/* <Typography
-            variant="h6"
-            sx={{ color: "#004587", fontWeight: "900", mb: 1, mt: 3 }}
-          >
-            Add Website
-          </Typography> */}
           <Button
             variant="contained"
             href="/user/websiteform"

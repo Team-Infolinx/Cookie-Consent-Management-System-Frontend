@@ -2,13 +2,19 @@ import { Box, Button, IconButton, TextField, Typography } from "@mui/material";
 import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function ScriptTab(props) {
-  const [script, setScript] = useState(
-    `<script\n  src="https://team-infolinx.github.io/Websafe-Script/script/cookie-banner.js?"\n  websiteId=${props.websiteId}\n></script>`
-  );
+  const [script, setScript] = useState("");
+
+  useEffect(() => {
+    if (props.websiteId) {
+      setScript(
+        `<script\n  src="https://team-infolinx.github.io/Websafe-Script/script/cookie-banner.js?"\n  websiteId=${props.websiteId}\n></script>`
+      );
+    }
+  }, [props.websiteId]);
 
   // Hanlde copy the text icon click.
   const handleCopyScript = () => {

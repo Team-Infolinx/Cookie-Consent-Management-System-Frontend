@@ -36,10 +36,6 @@ function Layout(props) {
     setMobileOpen(!mobileOpen);
   }
 
-  function handleDropdown() {
-    console.log("Opened Dropdown menu");
-  }
-
   const drawerItems = [
     {
       item: "Dashboard",
