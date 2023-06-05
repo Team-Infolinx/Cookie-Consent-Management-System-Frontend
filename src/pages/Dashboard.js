@@ -1,7 +1,9 @@
 import { Card, FormControl, Grid, MenuItem, Select } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import AppWidget from "../common components/AppWidget";
+import AppBarChart from "../common components/AppBarChart";
 import axios from "axios";
+import AppPieChart from "../common components/AppPieChart";
 
 export default function Dashboard() {
   const [noOfCookies, setNoOfCookies] = useState([]);
@@ -82,7 +84,6 @@ export default function Dashboard() {
             }}
           >
             <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-              {/* <InputLabel id="website-label">Website</InputLabel> */}
               <Select
                 labelId="website-label"
                 id="website"
@@ -113,6 +114,49 @@ export default function Dashboard() {
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
           <AppWidget value={acceptanceRate + "%"} title={"Acceptance Rate"} />
+        </Grid>
+      </Grid>
+
+      <Grid container spacing={3} sx={{ pt: 5 }}>
+        <Grid item xs={12} md={12} lg={8}>
+          <AppBarChart
+            title="Website Visits"
+            subheader="(+43%) than last year"
+            chartLabels={[
+              "01/01/2003",
+              "02/01/2003",
+              "03/01/2003",
+              "04/01/2003",
+              "05/01/2003",
+              "06/01/2003",
+              "07/01/2003",
+              "08/01/2003",
+              "09/01/2003",
+              "10/01/2003",
+              "11/01/2003",
+              "12/01/2003",
+            ]}
+            chartData={[
+              {
+                name: "Website A",
+                type: "column",
+                fill: "solid",
+                data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
+              },
+            ]}
+          />
+        </Grid>
+        <Grid item xs={12} md={12} lg={4}>
+          <AppPieChart
+            title="Acceptance Rate on cookie types"
+            chartData={[
+              { label: "Functional", value: 4344 },
+              { label: "Performance", value: 5435 },
+              { label: "Target", value: 1443 },
+              { label: "Other", value: 4443 },
+            ]}
+            chartColors={["#ff4842", "#fec107", "#1790ff", "#00ab55"]}
+          />
         </Grid>
       </Grid>
     </div>
