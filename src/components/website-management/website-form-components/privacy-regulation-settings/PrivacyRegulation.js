@@ -26,7 +26,9 @@ function PrivacyRegulation() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/v1/privacyRegulation/getall`)
+      .get(
+        `http://localhost:8080/api/v1/website-management/all-privacy-regulations`
+      )
       .then((response) => {
         setRegulations(response.data);
       });
@@ -37,7 +39,7 @@ function PrivacyRegulation() {
   const loadPolicies = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/v1/website/getPR/${websiteId}`
+        `http://localhost:8080/api/v1/website/${websiteId}/privacy-regulations`
       );
       const { privacyRegulations } = response.data[0];
       const selectedPolicies = privacyRegulations.map(
@@ -91,7 +93,7 @@ function PrivacyRegulation() {
     if (!alreadyAdded) {
       try {
         await axios.put(
-          `http://localhost:8080/api/v1/privacyRegulation/set/${websiteId}/${regulationId}`
+          `http://localhost:8080/api/v1/website-management/${websiteId}/privacy-regulation-management/${regulationId}`
         );
         setSelectedPolicies([...selectedPolicies, selectedOption]);
         setError(false);
@@ -106,7 +108,7 @@ function PrivacyRegulation() {
   const deletePrivacyRegulation = async (websiteId, regulationId) => {
     try {
       await axios.delete(
-        `http://localhost:8080/api/v1/privacyRegulation/delete/${websiteId}/${regulationId}`
+        `http://localhost:8080/api/v1/website-management/${websiteId}/privacy-regulation-management/${regulationId}`
       );
       const updatedSelectedPolicies = selectedPolicies.filter(
         (policy) => policy.regulationId !== regulationId
@@ -221,5 +223,4 @@ function PrivacyRegulation() {
     </>
   );
 }
-
 export default PrivacyRegulation;
