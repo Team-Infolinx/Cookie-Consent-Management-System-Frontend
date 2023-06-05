@@ -24,7 +24,6 @@ export default function Categories(props) {
     }
   }, [props.websiteId]);
 
-  // Functions to get categories from backend.
   async function getAllCookieCategories() {
     try {
       let websiteId = props.websiteId;
