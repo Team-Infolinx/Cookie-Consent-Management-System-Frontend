@@ -4,7 +4,6 @@ import WebsitesTable from "../components/website-management/websites-page-compon
 import axios from "axios";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
-
 import WebsiteDeleteDialogBox from "../components/website-management/websites-page-component/WebsiteDeleteDialogBox";
 
 function Websites() {
@@ -18,7 +17,7 @@ function Websites() {
   async function getAllWebsites() {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/v1/${userId}/getWebsites`
+        `http://localhost:8080/api/v1/users/${userId}/websites`
       );
       if (response.data) {
         setWebsites(response.data);
@@ -46,9 +45,8 @@ function Websites() {
     try {
       let websiteId = deletingWebsite.websiteId;
       const response = await axios.delete(
-        `http://localhost:8080/api/v1/${userId}/${websiteId}/deleteWebsite`
+        `http://localhost:8080/api/v1/users/${userId}/websites/${websiteId}`
       );
-      console.log(response.data);
       if (response.data) {
         removeWebsite(websiteId);
         handleCloseWebsiteDeleteDialog();

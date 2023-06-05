@@ -16,14 +16,6 @@ import DeleteCookieDialog from "./DeleteCookieDialog";
 import axios from "axios";
 
 export default function CookieTable(props) {
-  const alert = (
-    <Alert severity="info">
-      No cookies found. Scan for cookies using the Scan button or add a cookie
-      manually using the Add Cookie button.
-    </Alert>
-  );
-
-  // Handle deleting cookie.
   // Related to delete cookie dialog box.
   const [isOpen, setIsOpen] = useState(false);
   const [cookieToDelete, setCookieToDelete] = useState(null);
@@ -48,7 +40,7 @@ export default function CookieTable(props) {
     let cookieId = cookieToDelete.cookieId;
     try {
       const response = await axios.delete(
-        `http://localhost:8080/api/v1/${websiteId}/${cookieId}/deleteCookie`
+        `http://localhost:8080/api/v1/websites/${websiteId}/cookies/${cookieId}`
       );
       if (response.data) {
         props.removeCookie(cookieId);
@@ -69,9 +61,8 @@ export default function CookieTable(props) {
       let cookieCategoryId = cookieCategory.categoryId;
       let cookieId = cookie.cookieId;
       const response = await axios.put(
-        `http://localhost:8080/api/v1/${websiteId}/${cookieId}/${cookieCategoryId}/updateCategoryInCookie`
+        `http://localhost:8080/api/v1/websites/${websiteId}/cookies/${cookieId}/cookie-categories/${cookieCategoryId}`
       );
-
       if (response.data) {
         props.updateCookies(response.data);
       }
@@ -79,6 +70,13 @@ export default function CookieTable(props) {
       console.log(error.message);
     }
   }
+
+  const alert = (
+    <Alert severity="info">
+      No cookies found. Scan for cookies using the Scan button or add a cookie
+      manually using the Add Cookie button.
+    </Alert>
+  );
 
   const table = (
     <TableContainer component={Paper}>

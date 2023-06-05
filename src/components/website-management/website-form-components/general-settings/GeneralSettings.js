@@ -1,7 +1,6 @@
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
-
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
@@ -30,7 +29,7 @@ function GeneralSettings(props) {
   async function getWebsiteGeneralSettings() {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/v1/${props.userId}/${props.websiteId}/getWebsite`
+        `http://localhost:8080/api/v1/users/${props.userId}/websites/${props.websiteId}`
       );
       if (response.data) {
         setGeneralSettings(response.data);
@@ -86,12 +85,12 @@ function GeneralSettings(props) {
       let response;
       if (websiteId) {
         response = await axios.put(
-          `http://localhost:8080/api/v1/${props.userId}/updateWebsite`,
+          `http://localhost:8080/api/v1/users/${props.userId}/websites/${websiteId}`,
           generalSettings
         );
       } else {
         response = await axios.post(
-          `http://localhost:8080/api/v1/${props.userId}/addWebsite`,
+          `http://localhost:8080/api/v1/users/${props.userId}/websites`,
           generalSettings
         );
       }

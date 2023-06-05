@@ -21,7 +21,7 @@ export default function Categories(props) {
     try {
       let websiteId = props.websiteId;
       const response = await axios.get(
-        `http://localhost:8080/api/v1/${websiteId}/getCookieCategories`
+        `http://localhost:8080/api/v1/websites/${websiteId}/cookie-categories`
       );
       if (response.data) {
         setCategories(response.data);
@@ -70,10 +70,11 @@ export default function Categories(props) {
   }
 
   async function handleSaveCategory(category) {
+    let websiteId = props.websiteId;
     if (selectedCategory.categoryId) {
       try {
         const response = await axios.put(
-          `http://localhost:8080/api/v1/updateCategory`,
+          `http://localhost:8080/api/v1/websites/${websiteId}/cookie-categories/${selectedCategory.categoryId}`,
           category
         );
         if (response.data) {
@@ -84,9 +85,8 @@ export default function Categories(props) {
       }
     } else {
       try {
-        let websiteId = props.websiteId;
         const response = await axios.post(
-          `http://localhost:8080/api/v1/${websiteId}/addCookieCategory`,
+          `http://localhost:8080/api/v1/websites/${websiteId}/cookie-categories`,
           category
         );
         if (response.data) {
@@ -125,7 +125,7 @@ export default function Categories(props) {
       let websiteId = props.websiteId;
       let categoryId = categoryToDelete.categoryId;
       const response = await axios.delete(
-        `http://localhost:8080/api/v1/${websiteId}/${categoryId}/deleteCategory`
+        `http://localhost:8080/api/v1/websites/${websiteId}/cookie-categories/${categoryId}`
       );
       if (response.data) {
         removeCategory(categoryId);

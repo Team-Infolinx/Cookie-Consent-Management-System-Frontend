@@ -23,7 +23,7 @@ export default function CookiesTab(props) {
     try {
       let websiteId = props.websiteId;
       const response = await axios.get(
-        `http://localhost:8080/api/v1/${websiteId}/getCookies`
+        `http://localhost:8080/api/v1/websites/${websiteId}/cookies`
       );
       if (response.data) {
         setCookies(response.data);
@@ -38,7 +38,7 @@ export default function CookiesTab(props) {
     try {
       let websiteId = props.websiteId;
       const response = await axios.get(
-        `http://localhost:8080/api/v1/${websiteId}/getCookieCategories`
+        `http://localhost:8080/api/v1/websites/${websiteId}/cookie-categories`
       );
       if (response.data) {
         setCookieCategories(response.data);
@@ -99,11 +99,11 @@ export default function CookiesTab(props) {
   }
 
   async function handleSaveClick(cookie) {
+    let websiteId = props.websiteId;
     if (selectedCookie.cookieId) {
       try {
-        let websiteId = props.websiteId;
         const response = await axios.put(
-          `http://localhost:8080/api/v1/${websiteId}/updateCookie`,
+          `http://localhost:8080/api/v1/websites/${websiteId}/cookies/${selectedCookie.cookieId}`,
           cookie
         );
         if (response.data) {
@@ -114,10 +114,9 @@ export default function CookiesTab(props) {
       }
     } else {
       try {
-        let websiteId = props.websiteId;
         console.log(cookie);
         const response = await axios.post(
-          `http://localhost:8080/api/v1/${websiteId}/addCookie`,
+          `http://localhost:8080/api/v1/websites/${websiteId}/cookies`,
           cookie
         );
         if (response.data) {
