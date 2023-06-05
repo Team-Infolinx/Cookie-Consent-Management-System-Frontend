@@ -1,8 +1,8 @@
+import React, { useEffect, useState } from "react";
 import { Box, Button, IconButton, TextField, Typography } from "@mui/material";
 import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function ScriptTab(props) {

@@ -1,10 +1,11 @@
 import * as React from "react";
+import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+
 import GeneralSettings from "../general-settings/GeneralSettings";
-import { useLocation } from "react-router-dom";
 import PrivacyRegulation from "../privacy-regulation-settings/PrivacyRegulation";
 import BannerCustomization from "../customization/BannerCustomization";
 import CookiesTab from "../cookies/CookiesTab";

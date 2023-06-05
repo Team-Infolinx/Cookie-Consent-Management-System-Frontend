@@ -11,8 +11,6 @@ function GeneralSettings(props) {
     domain: "",
   });
   const { websiteId, configName, domain } = generalSettings;
-
-  // Related to error handling.
   const [configNameError, setConfigNameError] = useState(false);
   const [domainError, setDomainError] = useState(false);
   const [errorMessageForName, setErrorMessageForName] = useState("");

@@ -1,10 +1,11 @@
-import { Box, Button, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, Button } from "@mui/material";
 import DocumentScannerIcon from "@mui/icons-material/DocumentScanner";
 import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
-import React, { useEffect, useState } from "react";
-import CookieTable from "./CookieTable";
 import axios from "axios";
+
+import CookieTable from "./CookieTable";
 import CookieDialog from "./CookieDialog";
 
 export default function CookiesTab(props) {

@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Alert, Box, MenuItem, TextField } from "@mui/material";
 import {
   Table,
@@ -11,12 +12,11 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import React, { useState } from "react";
-import DeleteCookieDialog from "./DeleteCookieDialog";
 import axios from "axios";
 
+import DeleteCookieDialog from "./DeleteCookieDialog";
+
 export default function CookieTable(props) {
-  // Related to delete cookie dialog box.
   const [isOpen, setIsOpen] = useState(false);
   const [cookieToDelete, setCookieToDelete] = useState(null);
 

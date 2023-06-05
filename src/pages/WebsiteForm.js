@@ -1,6 +1,7 @@
 import React from "react";
-import BasicTabs from "../components/website-management/website-form-components/tab-panel/BasicTabs";
 import { Box, Typography } from "@mui/material";
+
+import BasicTabs from "../components/website-management/website-form-components/tab-panel/BasicTabs";
 
 export default function WebsiteForm() {
   return (

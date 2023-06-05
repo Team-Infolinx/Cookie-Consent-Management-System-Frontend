@@ -1,7 +1,7 @@
+import React from "react";
 import { Box, Card, CardContent, IconButton, Typography } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import React from "react";
 
 export default function CategoryCard(props) {
   return (

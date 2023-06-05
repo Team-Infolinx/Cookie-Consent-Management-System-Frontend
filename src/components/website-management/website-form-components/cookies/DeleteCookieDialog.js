@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Button,
@@ -7,7 +8,6 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import React from "react";
 
 export default function DeleteCookieDialog(props) {
   return (

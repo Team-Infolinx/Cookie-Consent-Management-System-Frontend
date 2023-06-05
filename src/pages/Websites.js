@@ -9,6 +9,8 @@ import WebsiteDeleteDialogBox from "../components/website-management/websites-pa
 function Websites() {
   const [websites, setWebsites] = useState([]);
   const [userId, setUserId] = useState(1000);
+  const [isOpenWebsiteDeleteDialog, setIsOpenWebsiteDialog] = useState(false);
+  const [deletingWebsite, setDeletingWebsite] = useState();
 
   useEffect(() => {
     getAllWebsites();
@@ -26,10 +28,6 @@ function Websites() {
       console.error(error.message);
     }
   }
-
-  // Related to deleting websites.
-  const [isOpenWebsiteDeleteDialog, setIsOpenWebsiteDialog] = useState(false);
-  const [deletingWebsite, setDeletingWebsite] = useState();
 
   function handleOpenWebsiteDeleteDialog(websiteToDelete) {
     setDeletingWebsite(websiteToDelete);

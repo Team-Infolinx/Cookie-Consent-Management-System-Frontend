@@ -9,6 +9,14 @@ import DeleteCategoryDialog from "./DeleteCategoryDialog";
 
 export default function Categories(props) {
   const [categories, setCategories] = useState([]);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState({
+    categoryId: null,
+    categoryName: "",
+    categoryDescription: "",
+  });
+  const [isOpenDeleteDialog, setIsOpenDeleteDialog] = useState(false);
+  const [categoryToDelete, setCategorytoDelete] = useState({});
 
   useEffect(() => {
     if (props.websiteId) {
@@ -30,14 +38,6 @@ export default function Categories(props) {
       console.error(error.message);
     }
   }
-
-  // Related add category and edit category dialog box.
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState({
-    categoryId: null,
-    categoryName: "",
-    categoryDescription: "",
-  });
 
   function handleAddCategory() {
     setIsDialogOpen(true);
@@ -98,10 +98,6 @@ export default function Categories(props) {
     }
     setIsDialogOpen(false);
   }
-
-  // Related To deleting category.
-  const [isOpenDeleteDialog, setIsOpenDeleteDialog] = useState(false);
-  const [categoryToDelete, setCategorytoDelete] = useState({});
 
   function handleOpenDeleteDialog(deletingCategory) {
     setCategorytoDelete(deletingCategory);
