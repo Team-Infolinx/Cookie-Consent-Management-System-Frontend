@@ -7,7 +7,10 @@ import GeneralSettings from "../general-settings/GeneralSettings";
 import CookieSettings from "../cookie-settings/CookieSettings";
 import { useLocation } from "react-router-dom";
 import BannerCustomizationEdited from "../customization/bannerCustomizationEdited";
-import BannerCustomization from "../customization/BannerCustomization";
+import {BannerProvider} from "../customization/customization-components/BannerContext";
+
+
+
 
 
 
@@ -59,7 +62,7 @@ export default function BasicTabs() {
 
   // WebsiteId and UserID.
   const { state } = useLocation();
-  const [websiteId, setWebsiteId] = React.useState("");
+  const [websiteId, setWebsiteId] = React.useState(4000);
   const userId = 1000;
 
   React.useEffect(() => {
@@ -102,8 +105,9 @@ export default function BasicTabs() {
         Privacy Regulation
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <BannerCustomizationEdited />
-        {/*<BannerCustomization></BannerCustomization>*/}
+        <BannerProvider websiteId={websiteId}>
+        <BannerCustomizationEdited/>
+        </BannerProvider>
       </TabPanel>
       <TabPanel value={value} index={4}>
         Script

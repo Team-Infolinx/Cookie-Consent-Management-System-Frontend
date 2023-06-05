@@ -9,7 +9,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import axios from "axios";
 
 
-const CusPopUp = (props) => {
+const PopUp = (props) => {
 
     const { openPopup, handleClose,data, getTemps} =props;
 
@@ -19,10 +19,13 @@ const CusPopUp = (props) => {
 
     const [textBox03,setTextBox03] =useState();
 
+    const [textBox04,setTextBox04] =useState();
+
     const template = {
         templateName:textBox01,
         templateRegulation:textBox02,
-        templateContent:textBox03
+        templatePrivacyPolicyLink:textBox03,
+        templateContent:textBox04
     }
 
     const handleSave =async () =>{
@@ -33,21 +36,21 @@ const CusPopUp = (props) => {
 
         const id =data.templateId;
         await axios.put(`http://localhost:8080/api/template/updateTemplateID/${id}`, template).then(() => getTemps());
-
         handleClose();
-        console.log(data);
+        /*console.log(data);
         console.log(textBox01);
         console.log(textBox02);
-        console.log(textBox03);
+        console.log(textBox03);*/
     }
 
     useEffect(() =>{
-        console.log("data",data);
+        /*console.log("data",data);*/
 
-         if(data){
+        if(data){
             setTextBox01(data.templateName);
             setTextBox02(data.templateRegulation);
-            setTextBox03(data.templateContent);
+            setTextBox03(data.templatePrivacyPolicyLink);
+            setTextBox04(data.templateContent);
         }
 
     },[data]);
@@ -70,13 +73,15 @@ const CusPopUp = (props) => {
                     </div>
                 </DialogTitle>
                 <DialogContent>
-                        <div className={"dialogContent-container"} style={{flexDirection:"row",width:"800px",justifyContent:"space-between"}}>
-                            <div style={{paddingTop:10,paddingBottom:10}}><TextField sx={{width:'50ch'}} id={data.templateId} label="Template Name" variant="outlined" value={textBox01} onChange={(e) =>setTextBox01(e.target.value) }/></div>
-                            <div style={{paddingTop:10,paddingBottom:10}}><TextField sx={{width:'50ch'}} id={data.templateId} label="Privacy Regulation Type" value={textBox02} onChange={(e) =>setTextBox02(e.target.value)} /></div>
-                            <div style={{paddingTop:10,paddingBottom:10}}><TextField sx={{width:'50ch'}} id={data.templateId} label="Content" variant="outlined" value={textBox03} onChange={(e) =>setTextBox03(e.target.value)} multiline={true} /></div>
-                        </div>
+                    <div className={"dialogContent-container"} style={{flexDirection:"row",width:"800px",justifyContent:"space-between"}}>
+                        <div style={{paddingTop:10,paddingBottom:10}}><TextField sx={{width:'50ch'}} id={String(data.templateId)} label="Template Name" variant="outlined" value={textBox01} onChange={(e) =>setTextBox01(e.target.value) }/></div>
+                        <div style={{paddingTop:10,paddingBottom:10}}><TextField sx={{width:'50ch'}} id={String(data.templateId)} label="Privacy Regulation Type" value={textBox02} onChange={(e) =>setTextBox02(e.target.value)} /></div>
+                        <div style={{paddingTop:10,paddingBottom:10}}><TextField sx={{width:'50ch'}} id={String(data.templateId)} label="Privacy policy link" value={textBox03} onChange={(e) =>setTextBox03(e.target.value)} /></div>
+                        <div style={{paddingTop:10,paddingBottom:10}}><TextField sx={{width:'50ch'}} id={String(data.templateId)} label="Content" variant="outlined" value={textBox04} onChange={(e) =>setTextBox04(e.target.value)} multiline={true} /></div>
+                    </div>
 
                 </DialogContent>
+
 
                 <DialogActions>
 
@@ -95,4 +100,4 @@ const CusPopUp = (props) => {
     );
 }
 
-export default CusPopUp;
+export default PopUp;

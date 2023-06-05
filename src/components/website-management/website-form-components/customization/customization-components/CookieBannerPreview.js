@@ -1,65 +1,123 @@
 import Typography from "@mui/material/Typography";
 import {Button, Grid} from "@mui/material";
-import CancelIcon from "@mui/icons-material/Cancel";
-import React, {useEffect, useState} from "react";
+import React, { useContext, useState } from "react";
+import { BannerContext } from "./BannerContext";
+import CookieSettingsDialog from "./CookieSettingDialog";
 
 
-const CookieBannerPreview = ()=>{
+const CookieBannerPreview = () => {
+    const { top, left, color, chosenCont } = useContext(BannerContext);
+    const [showDialog, setShowDialog] = useState(false);
 
+    const handleCloseClick = () => {
+        setShowDialog(false);
+    };
+
+    const handleCustomizeClick = () => {
+        setShowDialog(true);
+    };
 
     return (
         <Grid>
             <Grid container item direction="column" justify="center" xs={9} lg={9} xl={9}>
-                <div style={{width:'900px',
-                            height:"600px",
-                            backgroundColor:"white",
-                            padding:15,
-                            position:"relative",
-                            border: " 5px solid #00a5ff",
-                            borderRadius:10,
-
-                        }}>
-                            {/*Cookie Banner.*/}
-                            <div style={{
-                                width:'350px',
-                                height:"250px",
-                                backgroundColor:"orange",
-                                alignSelf:"right",
-                                position:"absolute",
-                                padding:5,
-                                top:10,
-                                left:10,
-                                bottom:0,
-                                borderRadius:10
-                            }}>
-                                <div className={"banner-container"} style={{flexDirection:"row",
-                                    paddingLeft:10,
-                                    paddingTop:8,
-                                    display:"flex",
-                                    justifyContent:"space-between",
-
-                                }}>
-                                    <div style={{float:"left",}}><Typography sx={{color:"#ffffff",fontWeight:"bold"}}>Cookie Banner</Typography></div>
-                                    <div style={{float:"right",}}><Button startIcon={<CancelIcon/>} sx={{color:"red"}}></Button></div>
-                                </div>
-                                <h5 style={{color:"#ffffff"}}>This Website Uses cookies</h5>
-                                <h5 style={{color:"#ffffff"}}>banner content</h5>
-                                <div className={"banner-button-container"} style={{flexDirection:"row",
-                                    display:"flex",
-                                    justifyContent:"space-between",
-                                }}>
-                                    <div style={{float:"right",paddingRight:10,}}><Button variant={"contained"}>Accept All</Button></div>
-                                    <div style={{float:"right",paddingRight:8}}><Button variant={"contained"}>Customize</Button></div>
-                                </div>
-                            </div>
+                <div
+                    style={{
+                        width: "900px",
+                        height: "600px",
+                        backgroundColor: "white",
+                        padding: 15,
+                        position: "relative",
+                        border: " 5px solid #00a5ff",
+                        borderRadius: 10,
+                    }}
+                >
+                    <div
+                        id="cookie-banner"
+                        style={{
+                            width: "400px",
+                            height: "300px",
+                            backgroundColor: color,
+                            alignSelf: "right",
+                            position: "absolute",
+                            padding:"10px",
+                            top: top,
+                            left: left,
+                            bottom: 0,
+                            borderRadius: 10,
+                            boxShadow: "0px -2px 5px rgba(0, 0, 0, 0.1)",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                        }}
+                    >
+                        <div id="cookie-message" style={{ flex: 1 }}>
+                            <h5 style={{ fontWeight: "bold",color: "#ffffff",fontSize: "18px"}}>Your privacy</h5>
+                            <h6 style={{ color: "#ffffff", fontSize: "14px", marginBottom: "5px" }}>{chosenCont}</h6>
                         </div>
-                        <Typography variant={"h6"} sx={{color:"#00A5FF",pb:{lg:3,md: 3, sm:3, xs: 3}, }} fontWeight={"Bold"} align={"center"}>Banner Preview</Typography>
-                </Grid>
+                        <div id="cookie-buttons" style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "10px" }}>
+                            <div style={{ display: "flex", marginBottom: "10px" }}>
+                                <Button
+                                    name={"Accept all cookies"}
+                                    style={{
+                                        marginRight: 10,
+                                        backgroundColor: "#0077dd",
+                                        color: "white",
+                                        border: "none",
+                                        padding: "8px 16px",
+                                        fontSize: "11px",
+                                        cursor: "pointer",
+                                    }}
+                                >
+                                    Accept all cookies
+                                </Button>
+                                <Button
+                                    name={"Necessary cookies only"}
+                                    style={{
+                                        marginRight: 10,
+                                        backgroundColor: "#0077dd",
+                                        color: "white",
+                                        border: "none",
+                                        padding: "8px 16px",
+                                        fontSize: "11px",
+                                        cursor: "pointer",
+                                    }}
+                                >
+                                    Necessary cookies only
+                                </Button>
+                            </div>
+                            <Button
+                                name={"Customize settings"}
+                                style={{
+                                    backgroundColor: "#ffffff",
+                                    color: "#0077dd",
+                                    border: "none",
+                                    padding: "8px 16px",
+                                    fontSize: "11px",
+                                    cursor: "pointer",
+                                    width:"100%",
+                                }}
+                                onClick={handleCustomizeClick}
+                            >
+                                Customize settings
+                            </Button>
+                        </div>
+                        <CookieSettingsDialog open={showDialog} onClose={handleCloseClick} />
+                    </div>
+                </div>
+                <Typography
+                    variant={"h6"}
+                    sx={{ color: "#00A5FF", pb: { lg: 3, md: 3, sm: 3, xs: 3 } }}
+                    fontWeight={"Bold"}
+                    align={"center"}
+                >
+                    Banner Preview
+                </Typography>
+            </Grid>
 
         </Grid>
-
     );
+};
 
-}
 export default CookieBannerPreview;
 

@@ -7,7 +7,11 @@ import {Box} from "@mui/system";
 
 
 
-    const BannerCustomizationEdited = ()=>{
+    const BannerCustomizationEdited = (props)=>{
+
+        const {websiteId} = props;
+
+        console.log("this is website ID"+websiteId);
 
 
         const [component,setComponent]= useState(<BannerTemplate/>);
@@ -28,7 +32,7 @@ import {Box} from "@mui/system";
         <Grid className={"customization"} container direction="row" justifyContent="space-evenly" alignItems="flex-start">
             <Grid className={"tab-tools"} container item direction="column" lg={4}>
                 {component}
-                <Box sx={{paddingTop:10,paddingBottom:10}}>
+                <Box sx={{paddingTop:0,paddingBottom:10,paddingLeft:30}}>
                     <Button variant={"contained"} style={{width:"100px"}} onClick={handleNextClick} >Next</Button>
                     <Button variant={"contained"} style={{backgroundColor:"red",width:"100px"}} onClick={handleBackClick}>Back</Button>
                 </Box>

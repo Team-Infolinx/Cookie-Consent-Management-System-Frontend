@@ -7,7 +7,8 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import BannerTemplateTable from "./customization-components/BannerTemplateTable";
 import CookieBannerPreview from "./customization-components/CookieBannerPreview";
-import {useEffect, useState} from "react";
+import {BannerProvider} from "./customization-components/BannerContext";
+
 
 
 function TabPanel(props) {
@@ -26,7 +27,6 @@ function TabPanel(props) {
             {value === index && (
                 <Box sx={{ p: 3 }}>
                     {children}
-                  {/*  <Typography>{children}</Typography>*/}
                 </Box>
             )}
         </div>
@@ -66,6 +66,7 @@ export default function FullWidthTabs({value,setValue}) {
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
                     <CookieBannerPreview/>
+
                 </TabPanel>
             </SwipeableViews>
 
