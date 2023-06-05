@@ -4,10 +4,18 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import GeneralSettings from "../general-settings/GeneralSettings";
+<<<<<<< Updated upstream
 import CookieSettings from "../cookie-settings/CookieSettings";
 import { useLocation } from "react-router-dom";
 import PrivacyRegulation from "../privacy-regulation-settings/PrivacyRegulation";
 import BannerCustomization from "../customization/BannerCustomization";
+=======
+import CookiesTab from "../cookies/CookiesTab";
+import Categories from "../categories/Categories";
+// import BannerCustomization from "../customization/BannerCustomization";
+import PrivacyRegulation from "../privacy-regulation-settings/PrivacyRegulation";
+import ScriptTab from "../script/ScriptTab";
+>>>>>>> Stashed changes
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -100,7 +108,15 @@ export default function BasicTabs() {
         <PrivacyRegulation />
       </TabPanel>
       <TabPanel value={value} index={3}>
+<<<<<<< Updated upstream
        <BannerCustomization />
+=======
+        <PrivacyRegulation
+          websiteId={websiteId}
+          handleNextTab={handleNextTab}
+          handleBackTab={handleBackTab}
+        />
+>>>>>>> Stashed changes
       </TabPanel>
       <TabPanel value={value} index={4}>
         Script
