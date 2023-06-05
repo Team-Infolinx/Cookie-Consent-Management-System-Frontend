@@ -22,13 +22,17 @@ import PollTwoToneIcon from "@mui/icons-material/PollTwoTone";
 import SettingsTwoToneIcon from "@mui/icons-material/SettingsTwoTone";
 import ExitToAppTwoToneIcon from "@mui/icons-material/ExitToAppTwoTone";
 import { useLocation } from "react-router-dom";
+import { useAuthContext } from "@asgardeo/auth-react";
+
+
 
 const drawerWidth = 240;
 
 function Layout(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const name = "User Name";
+  const { state, signOut } = useAuthContext();
+  const name = state.displayName;
 
   const location = useLocation();
 

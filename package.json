@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@asgardeo/auth-react": "^2.0.5",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^4.5.8",
@@ -20,7 +21,7 @@
     "react-apexcharts": "^1.4.0",
     "react-dom": "^18.2.0",
     "react-numeral": "^1.1.1",
-    "react-router-dom": "^6.10.0",
+    "react-router-dom": "^6.11.2",
     "react-router-hash-link": "^2.4.3",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.9",
