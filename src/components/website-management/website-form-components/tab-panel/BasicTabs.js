@@ -8,6 +8,7 @@ import Box from "@mui/material/Box";
 import GeneralSettings from "../general-settings/GeneralSettings";
 import CookiesTab from "../cookies/CookiesTab";
 import Categories from "../categories/Categories";
+import PrivacyRegulation from "../privacy-regulation-settings/PrivacyRegulation";
 import ScriptTab from "../script/ScriptTab";
 
 function TabPanel(props) {
@@ -106,7 +107,11 @@ export default function BasicTabs() {
         />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <p>Privacy Regulation</p>
+        <PrivacyRegulation
+          websiteId={websiteId}
+          handleWebsiteId={handleWebsiteId}
+          handleNextTab={handleNextTab}
+        />
       </TabPanel>
       <TabPanel value={value} index={4}>
         <p>Banner Customization</p>
