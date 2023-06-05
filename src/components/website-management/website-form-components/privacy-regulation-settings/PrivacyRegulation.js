@@ -9,15 +9,8 @@ import AddIcon from "@mui/icons-material/Add";
 import axios from "axios";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
-<<<<<<< Updated upstream
 
 function PrivacyRegulation() {
-=======
-import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
-
-function PrivacyRegulation(props) {
->>>>>>> Stashed changes
   const [selectedOption, setSelectedOption] = React.useState("");
   const [selectedPolicies, setSelectedPolicies] = React.useState([]);
   const [regulations, setRegulations] = useState([]);
@@ -221,36 +214,13 @@ function PrivacyRegulation(props) {
           </Box>
         </Paper>
 
-<<<<<<< Updated upstream
         <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
           <Button variant="contained" sx={{ mt: 30, bgcolor: "#00A5FF" }}>
             Save Changes
           </Button>
-=======
-        <Box sx={{ mt: 3, display: "flex", justifyContent: "space-between" }}>
-        <Button
-          startIcon={<ArrowBackIosNewOutlinedIcon />}
-          onClick={props.handleBackTab}
-        >
-          Back
-        </Button>
-        <Button
-          endIcon={<NavigateNextOutlinedIcon />}
-          variant="contained"
-          sx={{ bgcolor: "#00A5FF" }}
-          onClick={props.handleNextTab}
-        >
-          Save Changes
-        </Button>
->>>>>>> Stashed changes
         </Box>
       </div>
     </>
   );
 }
-<<<<<<< Updated upstream
 export default PrivacyRegulation;
-=======
-
-export default PrivacyRegulation;
->>>>>>> Stashed changes
