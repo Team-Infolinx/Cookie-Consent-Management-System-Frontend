@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import BannerTemplateTable from "./customization-components/BannerTemplateTable";
 import CookieBannerPreview from "./customization-components/CookieBannerPreview";
 
-export default function FullWidthTabs({ value, setValue }) {
+export default function CustomizationTabs({ value, setValue }) {
     const theme = useTheme();
 
     const handleChange = (event, newValue) => {

@@ -1,13 +1,13 @@
 import {Button, Grid, TextField} from "@mui/material";
 import React, {useState} from "react";
-import FullWidthTabs from "./FullWidthTabs";
+import CustomizationTabs from "./CustomizationTabs";
 import BannerTemplate from "./customization-components/BannerTemplate";
 import CookieBanner from "./customization-components/CookieBanner";
 import {Box} from "@mui/system";
 
 
 
-    const BannerCustomizationEdited = (props)=>{
+    const BannerCustomization = (props)=>{
 
         const {websiteId} = props;
 
@@ -43,13 +43,13 @@ import {Box} from "@mui/system";
                     boxShadow: "4px 4px 20px 4px rgba(0, 0, 0, 0.25)",
                     mb:8
                 }}>
-                <FullWidthTabs value={value} setValue={setValue}/>
+                <CustomizationTabs value={value} setValue={setValue}/>
                 </Box>
             </Grid>
         </Grid>);
 
 }
-export default BannerCustomizationEdited;
+export default BannerCustomization;
 
 
 

@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import GeneralSettings from "../general-settings/GeneralSettings";
 import CookieSettings from "../cookie-settings/CookieSettings";
 import { useLocation } from "react-router-dom";
-import BannerCustomizationEdited from "../customization/bannerCustomizationEdited";
+import BannerCustomization from "../customization/BannerCustomization";
 import {BannerProvider} from "../customization/customization-components/BannerContext";
 
 
@@ -106,7 +106,7 @@ export default function BasicTabs() {
       </TabPanel>
       <TabPanel value={value} index={3}>
         <BannerProvider websiteId={websiteId}>
-        <BannerCustomizationEdited/>
+        <BannerCustomization/>
         </BannerProvider>
       </TabPanel>
       <TabPanel value={value} index={4}>
