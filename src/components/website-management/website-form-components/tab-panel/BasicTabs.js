@@ -6,15 +6,8 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
 import GeneralSettings from "../general-settings/GeneralSettings";
-import CookieSettings from "../cookie-settings/CookieSettings";
-import { useLocation } from "react-router-dom";
 import BannerCustomization from "../customization/BannerCustomization";
 import {BannerProvider} from "../customization/customization-components/BannerContext";
-
-
-
-
-
 import CookiesTab from "../cookies/CookiesTab";
 import Categories from "../categories/Categories";
 import PrivacyRegulation from "../privacy-regulation-settings/PrivacyRegulation";
@@ -67,7 +60,7 @@ export default function BasicTabs() {
 
   // WebsiteId and UserID.
   const { state } = useLocation();
-  const [websiteId, setWebsiteId] = React.useState("");
+  const [websiteId, setWebsiteId] = React.useState("4000");
   const userId = 1000;
 
   React.useEffect(() => {

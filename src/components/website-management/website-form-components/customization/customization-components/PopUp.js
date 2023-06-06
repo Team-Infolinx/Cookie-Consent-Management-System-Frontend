@@ -81,11 +81,7 @@ const PopUp = (props) => {
                     </div>
 
                 </DialogContent>
-
-
                 <DialogActions>
-
-
                     <div className={"dialogTitle-container"} style={{flexDirection:"row",
                         height:'40px',
                         display:"flex",

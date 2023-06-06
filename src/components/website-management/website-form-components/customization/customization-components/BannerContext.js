@@ -1,5 +1,4 @@
 import React, { createContext, useState } from "react";
-
 const BannerContext = createContext();
 
 const BannerProvider = ({  websiteId,children }) => {
