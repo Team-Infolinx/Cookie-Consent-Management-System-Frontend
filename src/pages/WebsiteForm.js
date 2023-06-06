@@ -1,6 +1,7 @@
 import React from "react";
-import BasicTabs from "../components/website-management/website-form-components/tab-panel/BasicTabs";
 import { Box, Typography } from "@mui/material";
+
+import BasicTabs from "../components/website-management/website-form-components/tab-panel/BasicTabs";
 
 export default function WebsiteForm() {
   return (
@@ -12,8 +13,7 @@ export default function WebsiteForm() {
         Configuration for Your Website...
       </Typography>
       <Typography variant="body1" sx={{ color: "#004587" }} fontSize={16}>
-        Please fill out the form below to configure your website's cookie and
-        banner settings.
+        Customize your website's cookie and banner settings effortlessly.
       </Typography>
       <Box sx={{ pt: 5 }}>
         <BasicTabs />

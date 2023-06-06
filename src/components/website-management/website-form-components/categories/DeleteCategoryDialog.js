@@ -6,41 +6,36 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-import axios from "axios";
-
-export default function DeleteCookieDialogBox(props) {
+export default function DeleteCategoryDialog(props) {
   return (
     <div>
       <Dialog
-        open={props.isOpenDeleteCookieDialog}
-        onClose={props.handleDeleteCookieCancel}
+        open={props.isOpen}
+        onClose={props.handleClose}
+        aria-labelledby="draggable-dialog-title"
       >
         <DialogTitle
           style={{ cursor: "move" }}
+          id="draggable-dialog-title"
           sx={{ color: "#004587", fontWeight: "600" }}
         >
-          Delete Cookie
+          Delete Category
         </DialogTitle>
         <DialogContent>
           <DialogContentText sx={{ color: "#004587" }}>
             Are you sure you want to delete
-            {props.cookieToDelete
-              ? '"' + props.cookieToDelete.cookieName + "'"
+            {props.categoryToDelete
+              ? '"' + props.categoryToDelete.categoryName + "'"
               : ""}{" "}
-            Cookie? This action cannot be undone.
+            category? This action cannot be undone.
           </DialogContentText>
         </DialogContent>
         <DialogActions sx={{ pr: "24px", pb: "16px" }}>
-          <Button
-            autoFocus
-            onClick={props.handleDeleteCookieCancel}
-            sx={{ bgcolor: "#00A5FF", color: "white" }}
-            variant="contained"
-          >
+          <Button autoFocus onClick={props.handleClose} variant="outlined">
             Cancel
           </Button>
           <Button
-            onClick={props.handleDeleteClickInDialog}
+            onClick={props.handleDeleteClick}
             color="error"
             variant="contained"
           >

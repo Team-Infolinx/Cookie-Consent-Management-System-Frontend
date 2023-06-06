@@ -16,26 +16,28 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Avatar } from "@mui/material";
-import ArrowDropDownTwoToneIcon from "@mui/icons-material/ArrowDropDownTwoTone";
 import DashboardCustomizeTwoToneIcon from "@mui/icons-material/DashboardCustomizeTwoTone";
 import WebTwoToneIcon from "@mui/icons-material/WebTwoTone";
 import PollTwoToneIcon from "@mui/icons-material/PollTwoTone";
 import SettingsTwoToneIcon from "@mui/icons-material/SettingsTwoTone";
 import ExitToAppTwoToneIcon from "@mui/icons-material/ExitToAppTwoTone";
+import { useLocation } from "react-router-dom";
+import { useAuthContext } from "@asgardeo/auth-react";
+
+
 
 const drawerWidth = 240;
 
 function Layout(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const name = "User Name";
+  const { state, signOut } = useAuthContext();
+  const name = state.displayName;
+
+  const location = useLocation();
 
   function handleDrawerToggle() {
     setMobileOpen(!mobileOpen);
-  }
-
-  function handleDropdown() {
-    console.log("Opened Dropdown menu");
   }
 
   const drawerItems = [
@@ -78,7 +80,10 @@ function Layout(props) {
       <List>
         {drawerItems.map((object) => (
           <ListItem key={object.item} disablePadding color="#004587">
-            <ListItemButton href={object.link}>
+            <ListItemButton
+              href={object.link}
+              selected={location.pathname === object.link}
+            >
               <ListItemIcon>{object.icon}</ListItemIcon>
               <ListItemText primary={object.item} />
             </ListItemButton>
@@ -89,7 +94,7 @@ function Layout(props) {
       <List>
         {drawerItemsBottom.map((object) => (
           <ListItem key={object.item} disablePadding>
-            <ListItemButton>
+            <ListItemButton selected={location.pathname === object.link}>
               <ListItemIcon>{object.icon}</ListItemIcon>
               <ListItemText primary={object.item} />
             </ListItemButton>
@@ -147,9 +152,6 @@ function Layout(props) {
               {name}
             </Typography>
             <Avatar alt={name} sx={{ width: 24, height: 24, marginLeft: 1 }} />
-            <IconButton color="inherit" onClick={handleDropdown}>
-              <ArrowDropDownTwoToneIcon />
-            </IconButton>
           </div>
         </Toolbar>
       </AppBar>

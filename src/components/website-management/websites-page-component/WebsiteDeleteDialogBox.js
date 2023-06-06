@@ -5,7 +5,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import axios from "axios";
 
 export default function WebsiteDeleteDialogBox(props) {
   return (
@@ -32,12 +31,7 @@ export default function WebsiteDeleteDialogBox(props) {
           </DialogContentText>
         </DialogContent>
         <DialogActions sx={{ pr: "24px", pb: "16px" }}>
-          <Button
-            autoFocus
-            onClick={props.handleClose}
-            sx={{ bgcolor: "#00A5FF", color: "white" }}
-            variant="contained"
-          >
+          <Button autoFocus onClick={props.handleClose} variant="outlined">
             Cancel
           </Button>
           <Button
