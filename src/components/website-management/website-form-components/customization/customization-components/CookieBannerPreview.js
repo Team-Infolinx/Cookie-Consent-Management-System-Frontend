@@ -39,7 +39,7 @@ const CookieBannerPreview = () => {
                             backgroundColor: color,
                             alignSelf: "right",
                             position: "absolute",
-                            padding:"10px",
+                            padding:"10",
                             top: top,
                             left: left,
                             bottom: 0,
@@ -51,7 +51,7 @@ const CookieBannerPreview = () => {
                             alignItems: "center",
                         }}
                     >
-                        <div id="cookie-message" style={{ flex: 1 }}>
+                        <div id="cookie-message">
                             <h5 style={{ fontWeight: "bold",color: "#ffffff",fontSize: "18px"}}>Your privacy</h5>
                             <h6 style={{ color: "#ffffff", fontSize: "14px", marginBottom: "5px" }}>{chosenCont}</h6>
                         </div>

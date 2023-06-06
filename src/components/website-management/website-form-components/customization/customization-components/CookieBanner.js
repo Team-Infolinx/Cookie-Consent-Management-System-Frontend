@@ -8,8 +8,7 @@ import CustSelectBoxBanner from "./CustSelectBoxBanner";
 import axios from "axios";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-
-
+import CookieSettingsDialog from "./CookieSettingDialog";
 
 
 const CookieBannner = () =>{
@@ -39,7 +38,15 @@ const CookieBannner = () =>{
 
     const [errorMessage, setErrorMessage] = useState('');
 
+    const [showDialog, setShowDialog] = useState(false);
 
+    const handleCloseClick = () => {
+        setShowDialog(false);
+    };
+
+    const handleCustomizeClick = () => {
+        setShowDialog(prevShowDialog => !prevShowDialog);
+    };
 
     console.log("passed id"+passedId);
 
@@ -229,12 +236,19 @@ const CookieBannner = () =>{
                 <div style={{paddingTop:10,paddingBottom:10,paddingLeft:15}}>
                     <CustSelectBoxBanner name="Banner Colour"  fun={handleChangeColor} items={bannerColor} width={300} defaultValue={colorValue}/>
                 </div>
-                <div style={{textAlign:"right",paddingRight:90,paddingTop:20}}>
-                    <Button variant={"contained"} onClick={handlesave}>Save Banner</Button>
+                <div style={{ display: "flex", justifyContent: "flex-end", paddingTop: 20,paddingRight:60 }}>
+                    <div style={{ marginRight: 10 }}>
+                        <Button variant="contained" onClick={handleCustomizeClick}>Customize Settings</Button>
+                    </div>
+                    <div>
+                        <Button variant="contained" onClick={handlesave}>Save Banner</Button>
+                    </div>
+                    <CookieSettingsDialog open={showDialog} onClose={handleCloseClick} />
                 </div>
+
                 <Snackbar
                     open={snackbarOpen || error} // Open the Snackbar for success and error messages
-                    autoHideDuration={3000}
+                    autoHideDuration={2000}
                     onClose={handleSnackbarClose}
                 >
                     <MuiAlert
@@ -246,6 +260,7 @@ const CookieBannner = () =>{
                         {error ? errorMessage : snackbarMessage}
                     </MuiAlert>
                 </Snackbar>
+
             </Box>
         </div>
 
