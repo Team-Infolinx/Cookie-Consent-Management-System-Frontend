@@ -52,8 +52,8 @@ const CookieBannerPreview = () => {
                         }}
                     >
                         <div id="cookie-message">
-                            <h5 style={{ fontWeight: "bold",color: "#ffffff",fontSize: "18px"}}>Your privacy</h5>
-                            <h6 style={{ color: "#ffffff", fontSize: "14px", marginBottom: "5px" }}>{chosenCont}</h6>
+                            <h5 style={{ fontWeight: "bold",color: "#ffffff",fontSize: "18px",paddingLeft:20}}>Your privacy</h5>
+                            <h6 style={{ color: "#ffffff", fontSize: "14px", marginBottom: "5px",paddingLeft:20,paddingRight:5}}>{chosenCont}</h6>
                         </div>
                         <div id="cookie-buttons" style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "10px" }}>
                             <div style={{ display: "flex", marginBottom: "10px" }}>
@@ -74,7 +74,7 @@ const CookieBannerPreview = () => {
                                 <Button
                                     name={"Necessary cookies only"}
                                     style={{
-                                        marginRight: 10,
+                                        marginRight: 3,
                                         backgroundColor: "#0077dd",
                                         color: "white",
                                         border: "none",

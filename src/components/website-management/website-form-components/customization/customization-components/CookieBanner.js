@@ -150,17 +150,17 @@ const CookieBannner = () =>{
 
 
     function handleChangeColor(value){
-        if(value==="Yellow" || value==="#F1C40F"){
-            setColor("#F1C40F");
-            setColorValue("Yellow");
+        if(value==="Light Blue" || value==="#25acc6"){
+            setColor("#25acc6");
+            setColorValue("Light Blue");
         }
-        if(value==="Dark Gray" || value==="#3f454a"){
+        if(value==="Light Gray" || value==="#3f454a"){
             setColor("#34495E");
-            setColorValue("Dark Gray");
+            setColorValue("Light Gray");
         }
-        if(value==="Purple" || value==="#9B59B6"){
-            setColor("#9B59B6");
-            setColorValue("Purple");
+        if(value==="Dark Blue" || value==="#263347"){
+            setColor("#263347");
+            setColorValue("Dark Blue");
         }
     }
 
@@ -212,13 +212,13 @@ const CookieBannner = () =>{
     ];
 
     const bannerColor = [
-        {id: 1, value: "Purple"},
-        {id: 2, value: "Dark Gray"},
-        {id: 3, value: "Yellow"}
+        {id: 1, value: "Dark Blue"},
+        {id: 2, value: "Light Gray"},
+        {id: 3, value: "Light Blue"}
     ];
 
     return(<div className={"Cookie-Banner"}>
-            <Box sx={{backgroundColor:"#fefefe",width:"450px",height:"800px",align:"center",margin:3,paddingTop:5,paddingLeft:5, borderRadius:5,
+            <Box sx={{backgroundColor:"#fefefe",width:"450px",height:"650px",align:"center",margin:3,paddingTop:5,paddingLeft:5, borderRadius:5,
                 boxShadow: "4px 4px 20px 4px rgba(0, 0, 0, 0.25)",
                 mb:8
             }}>
@@ -247,7 +247,7 @@ const CookieBannner = () =>{
                 </div>
 
                 <Snackbar
-                    open={snackbarOpen || error} // Open the Snackbar for success and error messages
+                    open={snackbarOpen || error}
                     autoHideDuration={2000}
                     onClose={handleSnackbarClose}
                 >

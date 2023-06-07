@@ -57,7 +57,7 @@ const PopUp = (props) => {
 
     return (
         <div className={"dialog-box"}>
-            <Dialog open={openPopup} maxWidth={"lg"}>
+            <Dialog open={openPopup} fullWidth>
                 <DialogTitle>
                     <div className={"dialogTitle-container"} style={{flexDirection:"row",
                         backgroundColor:"#ccfefd",
@@ -68,17 +68,18 @@ const PopUp = (props) => {
                         justifyContent:"space-between",
                         borderRadius:5
                     }}>
-                        <div style={{float:"left",}}><Typography variant={"h6"} sx={{color:"#004587",fontWeight:"bold"}}>Cookie Template</Typography></div>
-                        <div style={{float:"right",}}><Button onClick={handleClose} startIcon={<CancelIcon/>} sx={{color:"red"}}> </Button></div>
+                        <div style={{float:"left"}}><Typography variant={"h6"} sx={{color:"#004587",fontWeight:"bold"}}>Cookie Template</Typography></div>
+                        <div style={{float:"right"}}><Button onClick={handleClose} startIcon={<CancelIcon/>} sx={{color:"red"}}> </Button></div>
                     </div>
                 </DialogTitle>
                 <DialogContent>
-                    <div className={"dialogContent-container"} style={{flexDirection:"row",width:"800px",justifyContent:"space-between"}}>
-                        <div style={{paddingTop:10,paddingBottom:10}}><TextField sx={{width:'50ch'}} id={String(data.templateId)} label="Template Name" variant="outlined" value={textBox01} onChange={(e) =>setTextBox01(e.target.value) }/></div>
-                        <div style={{paddingTop:10,paddingBottom:10}}><TextField sx={{width:'50ch'}} id={String(data.templateId)} label="Privacy Regulation Type" value={textBox02} onChange={(e) =>setTextBox02(e.target.value)} /></div>
-                        <div style={{paddingTop:10,paddingBottom:10}}><TextField sx={{width:'50ch'}} id={String(data.templateId)} label="Privacy policy link" value={textBox03} onChange={(e) =>setTextBox03(e.target.value)} /></div>
-                        <div style={{paddingTop:10,paddingBottom:10}}><TextField sx={{width:'50ch'}} id={String(data.templateId)} label="Content" variant="outlined" value={textBox04} onChange={(e) =>setTextBox04(e.target.value)} multiline={true} /></div>
+                    <div className={"dialogContent-container"} style={{flexDirection:"row",justifyContent:"space-between"}}>
+                        <div style={{paddingTop:10,paddingBottom:10}}><TextField fullWidth id={String(data.templateId)} label="Template Name" variant="outlined" value={textBox01} onChange={(e) =>setTextBox01(e.target.value) }/></div>
+                        <div style={{paddingTop:10,paddingBottom:10}}><TextField fullWidth id={String(data.templateId)} label="Privacy Regulation Type" value={textBox02} onChange={(e) =>setTextBox02(e.target.value)} /></div>
+                        <div style={{paddingTop:10,paddingBottom:10}}><TextField fullWidth id={String(data.templateId)} label="Privacy policy link" value={textBox03} onChange={(e) =>setTextBox03(e.target.value)} /></div>
+                        <div style={{paddingTop:10,paddingBottom:10}}><TextField fullWidth id={String(data.templateId)} label="Content" variant="outlined" value={textBox04} onChange={(e) =>setTextBox04(e.target.value)} multiline={true} /></div>
                     </div>
+                    {/*sx={{width:'50ch'}}*/}
 
                 </DialogContent>
                 <DialogActions>

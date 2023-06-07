@@ -117,7 +117,10 @@ export default function BasicTabs() {
       </TabPanel>
       <TabPanel value={value} index={4}>
           <BannerProvider websiteId={websiteId}>
-              <BannerCustomization/>
+              <BannerCustomization
+                  handleNextTab={handleNextTab}
+                  handleBackTab={handleBackTab}
+              />
           </BannerProvider>
       </TabPanel>
       <TabPanel value={value} index={5}>

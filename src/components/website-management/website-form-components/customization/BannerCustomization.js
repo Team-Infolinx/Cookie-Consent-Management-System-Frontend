@@ -4,7 +4,8 @@ import CustomizationTabs from "./CustomizationTabs";
 import BannerTemplate from "./customization-components/BannerTemplate";
 import CookieBanner from "./customization-components/CookieBanner";
 import {Box} from "@mui/system";
-
+import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
+import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
 
 
     const BannerCustomization = (props)=>{
@@ -32,10 +33,11 @@ import {Box} from "@mui/system";
         <Grid className={"customization"} container direction="row" justifyContent="space-evenly" alignItems="flex-start">
             <Grid className={"tab-tools"} container item direction="column" lg={4}>
                 {component}
-                <Box sx={{paddingTop:0,paddingBottom:10,paddingLeft:30}}>
+                <Box sx={{marginLeft:3,marginTop:"-32px",paddingTop:5,paddingLeft:23,height:"115px",width:"450px",backgroundColor:"#fefefe",boxShadow: "4px 4px 20px 4px rgba(0, 0, 0, 0.25)", borderRadius:5}}>
+                    <Button variant={"outlined"} style={{width:"100px",marginRight:10}} onClick={handleBackClick}>Back</Button>
                     <Button variant={"contained"} style={{width:"100px"}} onClick={handleNextClick} >Next</Button>
-                    <Button variant={"contained"} style={{backgroundColor:"red",width:"100px"}} onClick={handleBackClick}>Back</Button>
                 </Box>
+
             </Grid>
 
             <Grid className={"customization-tabs"} container item direction="column" justify={"center"} lg={8} sx={{paddingTop:0}}>
@@ -45,7 +47,26 @@ import {Box} from "@mui/system";
                 }}>
                 <CustomizationTabs value={value} setValue={setValue}/>
                 </Box>
+                <Box sx={{ mt: 3, display: "flex", justifyContent: "space-between",paddingRight:3,marginTop:-5 }}>
+                    <Button
+                        startIcon={<ArrowBackIosNewOutlinedIcon />}
+                        onClick={props.handleBackTab}
+                        sx={{paddingLeft:90}}
+                    >
+                        Back
+                    </Button>
+                    <Button
+                        endIcon={<NavigateNextOutlinedIcon />}
+                        variant="contained"
+                        sx={{ bgcolor: "#00A5FF" }}
+                        onClick={props.handleNextTab}
+                    >
+                        Save Changes
+                    </Button>
+                </Box>
             </Grid>
+
+
         </Grid>);
 
 }

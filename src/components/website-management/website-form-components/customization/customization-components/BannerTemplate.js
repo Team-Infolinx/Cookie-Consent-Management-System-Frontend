@@ -77,7 +77,7 @@ const BannerTemplate = () =>{
 
     return(
         <div className={"TemplateView"}>
-                <Box sx={{backgroundColor:"#fefefe",width:"450px",height:"800px",align:"center",margin:3,paddingTop:5,paddingLeft:5,
+                <Box sx={{backgroundColor:"#fefefe",width:"450px",height:"650px",align:"center",margin:3,paddingTop:5,paddingLeft:5,
                     borderRadius:5,
                     boxShadow: "4px 4px 20px 4px rgba(0, 0, 0, 0.25)",
                     mb:8
