@@ -3,15 +3,19 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import logo from "../../assets/svg/web-safe-logo.svg";
-import { Stack } from "@mui/system";
-import { Grid, Typography } from "@mui/material";
+import {Stack} from "@mui/system";
+import {Grid, Typography} from "@mui/material";
+import { useAuthContext } from "@asgardeo/auth-react";
+
 
 function HomeNavBar() {
-  const [scroll, setScroll] = React.useState(0);
 
-  const handleScroll = () => {
-    setScroll(window.scrollY);
-  };
+    const [scroll, setScroll] = React.useState(0);
+    const {  signIn } = useAuthContext();
+
+    const handleScroll = () => {
+        setScroll(window.scrollY);
+    }
 
   React.useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -92,7 +96,7 @@ function HomeNavBar() {
               sx={{ padding: 5 }}
             >
               <Button variant="contained">
-                <Typography style={{ fontWeight: "bold" }}>Sign in</Typography>
+                <Typography style={{ fontWeight: "bold" }} onClick={() => signIn()}>Sign in</Typography>
               </Button>
             </Stack>
           </Grid>
