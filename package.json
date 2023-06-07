@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@asgardeo/auth-react": "^2.0.5",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^4.5.8",
@@ -25,8 +24,9 @@
     "react-router-hash-link": "^2.4.3",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.9",
-    "swiper": "^9.3.2",
+    "swiper": "^9.1.1",
     "web-vitals": "^2.1.4"
+   
   },
   "scripts": {
     "start": "react-scripts start",
