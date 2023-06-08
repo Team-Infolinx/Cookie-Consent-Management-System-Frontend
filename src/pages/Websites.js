@@ -5,12 +5,20 @@ import axios from "axios";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
 import WebsiteDeleteDialogBox from "../components/website-management/websites-page-component/WebsiteDeleteDialogBox";
+import { useAuthContext } from "@asgardeo/auth-react";
 
 function Websites() {
   const [websites, setWebsites] = useState([]);
-  const [userId, setUserId] = useState(1000);
+  const [userId, setUserId] = useState("");
   const [isOpenWebsiteDeleteDialog, setIsOpenWebsiteDialog] = useState(false);
   const [deletingWebsite, setDeletingWebsite] = useState();
+  const { getDecodedIDToken } = useAuthContext();
+
+  getDecodedIDToken().then((decodedIDToken) => {
+    setUserId(decodedIDToken.sub);
+  }).catch((error) => {
+    console.error(error);
+  })
 
   useEffect(() => {
     getAllWebsites();
