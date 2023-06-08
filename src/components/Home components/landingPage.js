@@ -20,7 +20,7 @@ const LandingPage = () => {
           lg: `url(${homePageBackground})`,
         },
         bgcolor: { md: "#036fc5", sm: "#036fc5", xs: "#036fc5" },
-        minHeight: { sm: "30vh", xs: "30vh" },
+        maxHeight: { sm: "30vh", xs: "30vh",md:"30vh1" },
       }}
     >
       <HomeNavBar />
