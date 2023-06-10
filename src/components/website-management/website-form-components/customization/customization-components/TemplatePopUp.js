@@ -19,21 +19,90 @@ const PopUp = (props) => {
 
   const [textBox04, setTextBox04] = useState();
 
+  const [templateNameError, setTemplateNameError] = useState(false);
+  const [errorMessageTemplateName, setErrorMessageTemplateName] = useState("");
+
+  const [templateLengthCheckError, settemplateLengthCheckError] = useState(false);
+  const [errorTemplateLength, setErrorTemplateLength] = useState("");
+
+  const [cookiePolicyError, setCookiePolicyError] = useState(false);
+  const [errorMessageCookiePolicy, setErrorMessageCookiePolicy] = useState("");
+
+  const [contentError, setContentError] = useState(false);
+  const [errorMessageContent, setErrorMessageContent] = useState("");
+
+  const [contentLengthCheckError, setcontentLengthCheckError] = useState(false);
+  const [errorContentLength, setErrorContentLength] = useState("");
+
   const template = {
     templateName: textBox01,
     templateRegulation: textBox02,
     templatePrivacyPolicyLink: textBox03,
     templateContent: textBox04,
   };
+
+  function isValidDomain(domain) {
+    const pattern =
+        /^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,})(?:\/.*)?$/;
+    return pattern.test(domain);
+  }
   const handleSave = async () => {
-    const id = data.templateId;
-    await axios
-      .put(
-        `http://localhost:8080/api/template/updateTemplateID/${id}`,
-        template
-      )
-      .then(() => getTemps());
-    handleClose();
+    if (!textBox01) {
+      setTemplateNameError(true);
+      setErrorTemplateLength("Template name should not be empty");
+      return;
+    }
+
+    if (textBox01.length > 20) {
+
+      settemplateLengthCheckError(true);
+      setErrorMessageTemplateName("Template name shouldn't exceed 20 characters");
+      return;
+    }
+
+    if (textBox03 !== "") {
+      if (isValidDomain(textBox03) === false) {
+        setCookiePolicyError(true);
+        setErrorMessageCookiePolicy("Enter a valid domain");
+        return;
+
+      }
+    }
+
+    if (!textBox03){
+      setCookiePolicyError(true);
+      setErrorMessageCookiePolicy("Cookie policy can't be empty");
+      return;
+    }
+
+    if (!textBox04){
+      setContentError(true);
+      setErrorMessageContent("Content can't be empty");
+      return;
+    }
+
+    if (textBox04.length > 200){
+      setcontentLengthCheckError(true);
+      setErrorContentLength("Content should not exceed 200 characters");
+      return;
+    }
+    else {
+      const id = data.templateId;
+      await axios
+          .put(
+              `http://localhost:8080/api/v1/templates/${id}`,
+              template
+          )
+          .then(() => getTemps());
+
+      handleClose();
+      setTemplateNameError(false);
+      settemplateLengthCheckError(false);
+      setCookiePolicyError(false);
+      setContentError(false);
+      setcontentLengthCheckError(false);
+
+    }
   };
 
   useEffect(() => {
@@ -94,6 +163,8 @@ const PopUp = (props) => {
                 variant="outlined"
                 value={textBox01}
                 onChange={(e) => setTextBox01(e.target.value)}
+                error={templateNameError}
+                helperText={errorMessageTemplateName}
               />
             </div>
             <div style={{ paddingTop: 10, paddingBottom: 10 }}>
@@ -109,9 +180,11 @@ const PopUp = (props) => {
               <TextField
                 fullWidth
                 id={String(data.templateId)}
-                label="Privacy policy link"
+                label="Cookie policy link"
                 value={textBox03}
                 onChange={(e) => setTextBox03(e.target.value)}
+                error={cookiePolicyError}
+                helperText={errorMessageCookiePolicy}
               />
             </div>
             <div style={{ paddingTop: 10, paddingBottom: 10 }}>
@@ -123,6 +196,8 @@ const PopUp = (props) => {
                 value={textBox04}
                 onChange={(e) => setTextBox04(e.target.value)}
                 multiline={true}
+                error={contentError || contentLengthCheckError}
+                helperText={errorMessageContent || errorContentLength}
               />
             </div>
           </div>

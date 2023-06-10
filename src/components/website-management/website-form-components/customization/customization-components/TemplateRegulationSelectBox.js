@@ -1,7 +1,7 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 const CustSelectBox = (props) => {
   const { name, fun, items, width, selectedTemplate } = props;
-
+    /*value={selectedTemplate?.templateRegulation || ""}*/
   return (
     <div className="Select-Box">
       <FormControl sx={{ m: 1, minWidth: { width } }}>
@@ -13,6 +13,7 @@ const CustSelectBox = (props) => {
         >
           {items.map((item) => (
             <MenuItem key={item.id} value={item.value}>
+
               {item.value}
             </MenuItem>
           ))}
@@ -21,5 +22,7 @@ const CustSelectBox = (props) => {
     </div>
   );
 };
+
+
 
 export default CustSelectBox;
