@@ -8,16 +8,17 @@ import Typography from "@mui/material/Typography";
 import CancelIcon from "@mui/icons-material/Cancel";
 import axios from "axios";
 
-const PopUp = (props) => {
+const TemplatePopUp = (props) => {
+
   const { openPopup, handleClose, data, getTemps } = props;
 
-  const [textBox01, setTextBox01] = useState();
+  const [templateName_Box01, setTemplateName_Box01] = useState();
 
-  const [textBox02, setTextBox02] = useState();
+  const [templateRegulation_Box02, setTemplateRegulation_Box02] = useState();
 
-  const [textBox03, setTextBox03] = useState();
+  const [cookiePolicy_Box03, setCookiePolicy_Box03] = useState();
 
-  const [textBox04, setTextBox04] = useState();
+  const [content_Box04, setContent_Box04] = useState();
 
   const [templateNameError, setTemplateNameError] = useState(false);
   const [errorMessageTemplateName, setErrorMessageTemplateName] = useState("");
@@ -35,10 +36,10 @@ const PopUp = (props) => {
   const [errorContentLength, setErrorContentLength] = useState("");
 
   const template = {
-    templateName: textBox01,
-    templateRegulation: textBox02,
-    templatePrivacyPolicyLink: textBox03,
-    templateContent: textBox04,
+    templateName: templateName_Box01,
+    templateRegulation: templateRegulation_Box02,
+    templatePrivacyPolicyLink: cookiePolicy_Box03,
+    templateContent: content_Box04,
   };
 
   function isValidDomain(domain) {
@@ -46,22 +47,24 @@ const PopUp = (props) => {
         /^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,})(?:\/.*)?$/;
     return pattern.test(domain);
   }
+
   const handleSave = async () => {
-    if (!textBox01) {
+
+    if (!templateName_Box01) {
       setTemplateNameError(true);
       setErrorTemplateLength("Template name should not be empty");
       return;
     }
 
-    if (textBox01.length > 20) {
+    if (templateName_Box01.length > 20) {
 
       settemplateLengthCheckError(true);
       setErrorMessageTemplateName("Template name shouldn't exceed 20 characters");
       return;
     }
 
-    if (textBox03 !== "") {
-      if (isValidDomain(textBox03) === false) {
+    if (cookiePolicy_Box03 !== "") {
+      if (isValidDomain(cookiePolicy_Box03) === false) {
         setCookiePolicyError(true);
         setErrorMessageCookiePolicy("Enter a valid domain");
         return;
@@ -69,19 +72,19 @@ const PopUp = (props) => {
       }
     }
 
-    if (!textBox03){
+    if (!cookiePolicy_Box03){
       setCookiePolicyError(true);
       setErrorMessageCookiePolicy("Cookie policy can't be empty");
       return;
     }
 
-    if (!textBox04){
+    if (!content_Box04){
       setContentError(true);
       setErrorMessageContent("Content can't be empty");
       return;
     }
 
-    if (textBox04.length > 200){
+    if (content_Box04.length > 200){
       setcontentLengthCheckError(true);
       setErrorContentLength("Content should not exceed 200 characters");
       return;
@@ -107,10 +110,10 @@ const PopUp = (props) => {
 
   useEffect(() => {
     if (data) {
-      setTextBox01(data.templateName);
-      setTextBox02(data.templateRegulation);
-      setTextBox03(data.templatePrivacyPolicyLink);
-      setTextBox04(data.templateContent);
+      setTemplateName_Box01(data.templateName);
+      setTemplateRegulation_Box02(data.templateRegulation);
+      setCookiePolicy_Box03(data.templatePrivacyPolicyLink);
+      setContent_Box04(data.templateContent);
     }
   }, [data]);
 
@@ -161,10 +164,10 @@ const PopUp = (props) => {
                 id={String(data.templateId)}
                 label="Template Name"
                 variant="outlined"
-                value={textBox01}
-                onChange={(e) => setTextBox01(e.target.value)}
-                error={templateNameError}
-                helperText={errorMessageTemplateName}
+                value={templateName_Box01}
+                onChange={(e) => setTemplateName_Box01(e.target.value)}
+                error={templateNameError || templateLengthCheckError}
+                helperText={errorMessageTemplateName || errorTemplateLength}
               />
             </div>
             <div style={{ paddingTop: 10, paddingBottom: 10 }}>
@@ -172,8 +175,8 @@ const PopUp = (props) => {
                 fullWidth
                 id={String(data.templateId)}
                 label="Privacy Regulation Type"
-                value={textBox02}
-                onChange={(e) => setTextBox02(e.target.value)}
+                value={templateRegulation_Box02}
+                onChange={(e) => setTemplateRegulation_Box02(e.target.value)}
               />
             </div>
             <div style={{ paddingTop: 10, paddingBottom: 10 }}>
@@ -181,8 +184,8 @@ const PopUp = (props) => {
                 fullWidth
                 id={String(data.templateId)}
                 label="Cookie policy link"
-                value={textBox03}
-                onChange={(e) => setTextBox03(e.target.value)}
+                value={cookiePolicy_Box03}
+                onChange={(e) => setCookiePolicy_Box03(e.target.value)}
                 error={cookiePolicyError}
                 helperText={errorMessageCookiePolicy}
               />
@@ -193,8 +196,8 @@ const PopUp = (props) => {
                 id={String(data.templateId)}
                 label="Content"
                 variant="outlined"
-                value={textBox04}
-                onChange={(e) => setTextBox04(e.target.value)}
+                value={content_Box04}
+                onChange={(e) => setContent_Box04(e.target.value)}
                 multiline={true}
                 error={contentError || contentLengthCheckError}
                 helperText={errorMessageContent || errorContentLength}
@@ -230,4 +233,4 @@ const PopUp = (props) => {
   );
 };
 
-export default PopUp;
+export default TemplatePopUp;

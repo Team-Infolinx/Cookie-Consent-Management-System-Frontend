@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Box } from "@mui/system";
 import Typography from "@mui/material/Typography";
-import CustSelectBox from "./CustSelectBox";
+import TemplateRegulationSelectBox from "./TemplateRegulationSelectBox";
 import { Button, TextField } from "@mui/material";
 import axios from "axios";
-import PopUp from "./PopUp";
+import TemplatePopUp from "./TemplatePopUp";
 import { BannerContext } from "./BannerContext";
 const BannerTemplate = () => {
   const [openPopup, setOpenPopup] = useState(false);
@@ -18,8 +18,9 @@ const BannerTemplate = () => {
   const loadTemplates = async () => {
     const websiteID = passedId;
     const result = await axios.get(
-      `http://localhost:8080/api/template/getAllTemplates/${websiteID}`
+      `http://localhost:8080/api/v1/templates/${websiteID}`
     );
+
     settemplates(result.data);
 
     if (Object.keys(selectedTemplate).length !== 0) {
@@ -77,8 +78,8 @@ const BannerTemplate = () => {
         }}
       >
         <Typography
-          variant={"h6"}
-          sx={{ color: "#00A5FF", pb: { lg: 3, md: 3, sm: 3, xs: 3 } }}
+          variant={"h5"}
+          sx={{ color: "#00a5ff", pb: { lg: 3, md: 3, sm: 3, xs: 3 } }}
           fontWeight={"Bold"}
         >
           Banner Template
@@ -91,10 +92,10 @@ const BannerTemplate = () => {
             paddingRight: 45,
           }}
         >
-          <CustSelectBox
-            name={"Default template"}
+          <TemplateRegulationSelectBox
+            name={"Privacy regulation"}
             items={regulationValues}
-            width={120}
+            width={140}
             fun={choosenTemplate}
             selectedTemplate={selectedTemplate}
           />
@@ -141,16 +142,15 @@ const BannerTemplate = () => {
           />
         </div>
         <div style={{ textAlign: "right", paddingRight: 55, paddingTop: 20 }}>
-          <Button variant={"contained"} onClick={editButtonAction}>
+          <Button variant="contained" onClick={editButtonAction}>
             Edit template
           </Button>
-          <PopUp
+          <TemplatePopUp
             openPopup={openPopup}
             data={selectedTemplate}
             handleClose={handleClose}
             getTemps={loadTemplates}
-          ></PopUp>
-          {/*id={selectedTemplate?.templateId|| ''}*/}
+          ></TemplatePopUp>
         </div>
       </Box>
     </div>

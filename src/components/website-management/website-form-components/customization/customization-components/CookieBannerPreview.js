@@ -5,7 +5,7 @@ import { BannerContext } from "./BannerContext";
 import CookieSettingsDialog from "./CookieSettingDialog";
 
 const CookieBannerPreview = () => {
-  const { top, left, color, chosenCont } = useContext(BannerContext);
+  const { top, left, color, chosenCont,textColor } = useContext(BannerContext);
   const [showDialog, setShowDialog] = useState(false);
 
   const handleCloseClick = () => {
@@ -62,7 +62,7 @@ const CookieBannerPreview = () => {
               <h5
                 style={{
                   fontWeight: "bold",
-                  color: "#ffffff",
+                  color: textColor,
                   fontSize: "18px",
                   paddingLeft: 20,
                 }}
@@ -71,7 +71,7 @@ const CookieBannerPreview = () => {
               </h5>
               <h6
                 style={{
-                  color: "#ffffff",
+                  color: textColor,
                   fontSize: "14px",
                   marginBottom: "5px",
                   paddingLeft: 20,

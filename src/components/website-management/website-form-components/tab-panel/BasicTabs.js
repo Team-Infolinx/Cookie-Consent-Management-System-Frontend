@@ -43,7 +43,7 @@ function a11yProps(index) {
 }
 
 export default function BasicTabs() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState('');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -60,7 +60,7 @@ export default function BasicTabs() {
 
   // WebsiteId and UserID.
   const { state } = useLocation();
-  const [websiteId, setWebsiteId] = React.useState("4000");
+  const [websiteId, setWebsiteId] = React.useState('');
   const userId = 1000;
 
   React.useEffect(() => {

@@ -64,12 +64,11 @@ function GeneralSettings(props) {
       if (isValidDomain(domain) === false) {
         setDomainError(true);
         setErrorMessageForDomain("Enter a valid domain.");
-        isDomainValid = false;
       }
     } else {
       setDomainError(true);
       setErrorMessageForDomain("Domain can not be empty");
-      isDomainValid = false;
+
     }
 
     if (isConfigNameValid === true && isDomainValid === true) {

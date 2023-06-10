@@ -4,6 +4,7 @@ const BannerProvider = ({ websiteId, children }) => {
   const [top, setTop] = useState(10);
   const [left, setLeft] = useState(10);
   const [color, setColor] = useState("#eb6c44");
+  const [textColor,setTextColor ] = useState("#ffffff");
   const [chosenCont, setChosenCont] = useState("");
 
   return (
@@ -18,6 +19,8 @@ const BannerProvider = ({ websiteId, children }) => {
         chosenCont,
         setChosenCont,
         websiteId,
+          textColor,
+          setTextColor
       }}
     >
       {children}

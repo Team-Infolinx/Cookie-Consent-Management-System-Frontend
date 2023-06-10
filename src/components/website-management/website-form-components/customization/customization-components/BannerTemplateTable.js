@@ -20,7 +20,7 @@ const BannerTemplateTable = () => {
   const loadTemplates = async () => {
     const websiteID = passedId;
     const result = await axios.get(
-      `http://localhost:8080/api/template/getAllTemplates/${websiteID}`
+      `http://localhost:8080/api/v1/templates/${websiteID}`
     );
     settemplates(result.data);
   };
@@ -34,15 +34,17 @@ const BannerTemplateTable = () => {
       if (template.templateId === selectedTemplate.templateId) {
         // Set the selected switch to true
         axios.put(
-          `http://localhost:8080/api/template/templateDefault/${selectedTemplate.templateId}`,
+          `http://localhost:8080/api/v1/templates/default/${selectedTemplate.templateId}`,
           { templateDefault: "true" }
+
         );
         setSelectedTemplateId(selectedTemplate.templateId);
+
         return { ...template, templateDefault: true }; // Update the template with templateDefault: true
       } else {
         // Set other switches to false
         axios.put(
-          `http://localhost:8080/api/template/templateDefault/${template.templateId}`,
+          `http://localhost:8080/api/v1/templates/default/${template.templateId}`,
           { templateDefault: "false" }
         );
         return { ...template, templateDefault: false }; // Update the template with templateDefault: false

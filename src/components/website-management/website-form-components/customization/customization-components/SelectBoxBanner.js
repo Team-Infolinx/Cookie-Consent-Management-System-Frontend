@@ -1,6 +1,6 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
-const CustSelectBox = (props) => {
+const BannerSelectBox = (props) => {
   const { name, fun, items, width, defaultValue } = props;
 
   return (
@@ -23,4 +23,4 @@ const CustSelectBox = (props) => {
   );
 };
 
-export default CustSelectBox;
+export default BannerSelectBox;

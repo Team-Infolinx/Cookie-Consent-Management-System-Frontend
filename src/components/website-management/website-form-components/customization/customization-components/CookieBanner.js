@@ -1,42 +1,34 @@
 import React, { useContext, useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
-import CustSelectBox from "./CustSelectBox";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 import { BannerContext } from "./BannerContext";
-import CustSelectBoxBanner from "./CustSelectBoxBanner";
+import CustSelectBoxBanner from "./SelectBoxBanner";
 import axios from "axios";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import CookieSettingsDialog from "./CookieSettingDialog";
+import BannerContentSelectBox from "./BannerContentSelectBox";
 
 const CookieBannner = () => {
-  const { setColor, setTop, setLeft, setChosenCont, color } =
-    useContext(BannerContext);
+
+  const passedId = useContext(BannerContext).websiteId;
+  const { setColor, setTop, setLeft, setChosenCont, color, textColor, setTextColor} = useContext(BannerContext);
 
   const [templates, settemplates] = useState([]);
-
   const [banner, setBanner] = useState([]);
-
   const [selectedTemplate, setSelectedTemplate] = useState({});
 
   const [alignmentValue, setAlignmentValue] = useState("");
-
   const [positionValue, setPositionValue] = useState("");
-
   const [colorValue, setColorValue] = useState("");
-
-  const passedId = useContext(BannerContext).websiteId;
+  const [textColorValue, setTextColorValue] = useState("");
 
   /*Sanck bar useStates*/
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-
   const [snackbarMessage, setSnackbarMessage] = useState("");
-
   const [error, setError] = useState(false);
-
   const [errorMessage, setErrorMessage] = useState("");
-
   const [showDialog, setShowDialog] = useState(false);
 
   const handleCloseClick = () => {
@@ -48,36 +40,45 @@ const CookieBannner = () => {
   };
 
   const loadTemplates = async () => {
-    const websiteID = passedId;
-    const result = await axios.get(
-      `http://localhost:8080/api/template/getAllTemplates/${websiteID}`
-    );
-    settemplates(result.data);
-
-    if (Object.keys(selectedTemplate).length !== 0) {
-      const template = result.data.find(
-        (t) => t.templateRegulation === selectedTemplate?.templateRegulation
+    try {
+      const websiteID = passedId;
+      const result = await axios.get(
+          `http://localhost:8080/api/v1/templates/${websiteID}`
       );
-      setSelectedTemplate(template);
-    } else {
-      const template = result.data[0];
-      setSelectedTemplate(template);
+      settemplates(result.data);
+
+      if (Object.keys(selectedTemplate).length !== 0) {
+        const template = result.data.find(
+            (t) => t.templateName === selectedTemplate?.templateName
+        );
+        setSelectedTemplate(template);
+      } else {
+        const template = result.data[0];
+        setSelectedTemplate(template);
+      }
+    }
+    catch (error) {
+      console.error("Error loading banners: ", error);
     }
   };
+
   const laodBanner = async () => {
-    const websiteID = passedId;
+
     try {
+      const websiteId = passedId;
       const response = await axios.get(
-        `http://localhost:8080/api/banner/getBanners/${websiteID}`
+        `http://localhost:8080/api/v1/banners/${websiteId}`
       );
       const result = response.data;
       setBanner(result);
 
-      const { bannerPosition, bannerColor, bannerAlignment } = result;
+      const { bannerPosition, bannerColor, bannerAlignment,bannerTextColor } = result;
       setPositionValue(bannerPosition);
       handleChangeTop(bannerPosition);
       handleChangeHorizontal(bannerAlignment);
       handleChangeColor(bannerColor);
+      handleChangeTextColor(bannerTextColor);
+
     } catch (error) {
       console.error("Error loading banners:", error);
     }
@@ -88,27 +89,28 @@ const CookieBannner = () => {
     laodBanner();
   }, []);
 
-  const regulationValues =
+  const templateValues =
     templates?.length > 0
       ? templates.map((template) => ({
           id: template.templateId,
-          value: template.templateRegulation,
+          value: template.templateName,
         }))
       : [];
+
+
   const choosenTemplate = (e) => {
     const selectedRegulation = e.target.value;
-    let chosenTemp = null;
     let chosenCont = null;
 
     for (let i = 0; i < templates.length; i++) {
-      if (templates[i].templateRegulation === selectedRegulation) {
+      if (templates[i].templateName === selectedRegulation) {
         chosenCont = templates[i].templateContent;
         break;
       }
     }
 
     const template = templates.find(
-      (t) => t.templateRegulation === e.target.value
+      (t) => t.templateName === e.target.value
     );
     setSelectedTemplate(template);
     setChosenCont(chosenCont);
@@ -144,7 +146,7 @@ const CookieBannner = () => {
       setColor("#25acc6");
       setColorValue("Light Blue");
     }
-    if (value === "Light Gray" || value === "#3f454a") {
+    if (value === "Light Gray" || value === "#34495E") {
       setColor("#34495E");
       setColorValue("Light Gray");
     }
@@ -154,32 +156,44 @@ const CookieBannner = () => {
     }
   }
 
+  function handleChangeTextColor(value) {
+    if (value === "Black" || value === "#000000") {
+      setTextColor("#000000");
+      setTextColorValue("Black");
+    }
+    if (value === "White" || value === "#ffffff") {
+      setTextColor("#ffffff");
+      setTextColorValue("White");
+    }
+  }
+
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
     setError(false);
     setErrorMessage("");
   };
   async function handlesave() {
+
     const websiteID = passedId;
 
     const bannerSave = {
       bannerPosition: positionValue,
       bannerColor: color,
       bannerAlignment: alignmentValue,
+      bannerTextColor: textColor
     };
 
     try {
       const response = await axios.put(
-        `http://localhost:8080/api/banner/updateBanner/${websiteID}`,
+        `http://localhost:8080/api/v1/banners/${websiteID}`,
         bannerSave
       );
-      console.log("success", response.data);
       setSnackbarMessage("Save Completed!");
       setSnackbarOpen(true);
     } catch (error) {
-      console.error("Error saving banner:", error);
+      console.error("Error saving banner: ", error.response.data.message);
       setError(true);
-      setErrorMessage("An error occurred while saving the banner.");
+      setErrorMessage(error.response.data.message);
     }
   }
 
@@ -200,6 +214,11 @@ const CookieBannner = () => {
     { id: 3, value: "Light Blue" },
   ];
 
+  const bannerTextColor = [
+    { id: 1, value: "Black" },
+    { id: 2, value: "White" },
+  ];
+
   return (
     <div className={"Cookie-Banner"}>
       <Box
@@ -217,20 +236,20 @@ const CookieBannner = () => {
         }}
       >
         <Typography
-          variant={"h6"}
-          sx={{ color: "#00A5FF", pb: { lg: 3, md: 3, sm: 3, xs: 3 } }}
+          variant={"h5"}
+          sx={{ color: "#00a5ff", pb: { lg: 3, md: 3, sm: 3, xs: 3 } }}
           fontWeight={"Bold"}
         >
           Cookie Banner
         </Typography>
         <div style={{ paddingTop: 30, paddingBottom: 10, paddingLeft: 15 }}>
-          <CustSelectBox
-            name={"Default template"}
-            items={regulationValues}
-            width={300}
-            fun={choosenTemplate}
-            selectedTemplate={selectedTemplate}
-          />
+          <BannerContentSelectBox
+              name={"Banner Content"}
+              items={templateValues}
+              width={300}
+              fun={choosenTemplate}
+              selectedTemplate={selectedTemplate}
+          ></BannerContentSelectBox>
         </div>
         {/*templates[0].templateName*/}
         <div style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15 }}>
@@ -258,6 +277,15 @@ const CookieBannner = () => {
             items={bannerColor}
             width={300}
             defaultValue={colorValue}
+          />
+        </div>
+        <div style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 15 }}>
+          <CustSelectBoxBanner
+              name="Banner Text Colour"
+              fun={handleChangeTextColor}
+              items={bannerTextColor}
+              width={300}
+              defaultValue={textColorValue}
           />
         </div>
         <div
