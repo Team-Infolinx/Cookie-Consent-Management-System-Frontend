@@ -24,8 +24,6 @@ import ExitToAppTwoToneIcon from "@mui/icons-material/ExitToAppTwoTone";
 import { useLocation } from "react-router-dom";
 import { useAuthContext } from "@asgardeo/auth-react";
 
-
-
 const drawerWidth = 240;
 
 function Layout(props) {
@@ -42,14 +40,9 @@ function Layout(props) {
 
   const drawerItems = [
     {
-      item: "Dashboard",
-      icon: <DashboardCustomizeTwoToneIcon />,
-      link: "/user",
-    },
-    {
       item: "Websites",
       icon: <WebTwoToneIcon />,
-      link: "/user/websites",
+      link: "/user",
     },
     {
       item: "Analytics",

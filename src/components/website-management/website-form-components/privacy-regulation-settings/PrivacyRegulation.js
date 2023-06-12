@@ -208,7 +208,7 @@ function PrivacyRegulation(props) {
                 </table>
               ) : (
                 <Alert severity="info">
-                  Your website does not appear to have added any privacy
+                  Currently, your website does not appear to have added any privacy
                   regulations !
                 </Alert>
               )}

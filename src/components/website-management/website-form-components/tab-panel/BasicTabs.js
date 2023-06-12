@@ -111,8 +111,8 @@ export default function BasicTabs() {
       <TabPanel value={value} index={3}>
         <PrivacyRegulation
           websiteId={websiteId}
-          handleWebsiteId={handleWebsiteId}
           handleNextTab={handleNextTab}
+          handleBackTab={handleBackTab}
         />
       </TabPanel>
       <TabPanel value={value} index={4}>
