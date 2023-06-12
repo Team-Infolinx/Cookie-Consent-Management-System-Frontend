@@ -1,5 +1,6 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid,Typography } from "@mui/material";
 import aboutUsImg from "../../assets/svg/about us.svg";
+import Box from "@mui/material/Box";
 
 const AboutUs = () => {
   return (
@@ -30,6 +31,7 @@ const AboutUs = () => {
             direction={"column"}
             justify={"center"}
             alignItems={"center"}
+            item
             lg={12}
             md={12}
             sm={12}
@@ -38,6 +40,7 @@ const AboutUs = () => {
           />
           <Grid
             container
+            item
             direction={"column"}
             justify={"center"}
             alignItems={"center"}
@@ -45,14 +48,17 @@ const AboutUs = () => {
             md={12}
             sm={12}
             xs={12}
+            sx={{paddingLeft:{xl:5, lg:5, md:5, sm:5, xs:0}}}
           >
+            <Box sx={{backgroundColor:"#ffffff",width: {xl:"40vw", lg:"40vw", md:"80vw", sm:"80vw", xs:"80vw"},borderRadius:5,padding:3}}>
             <img
               src={aboutUsImg}
               style={{
-                height: 600,
-                marginRight: "1em",
+                // height: 600,
+                // marginRight: "1em",
               }}
             />
+            </Box>
           </Grid>
 
           <Grid
@@ -60,6 +66,7 @@ const AboutUs = () => {
             direction={"column"}
             justify={"center"}
             alignItems={"center"}
+            item
             lg={6}
             md={12}
             sm={12}
@@ -67,7 +74,7 @@ const AboutUs = () => {
             sx={{ paddingRight: 10, paddingLeft: 10, paddingBottom: 20 }}
           >
             <Typography
-              sx={{ pt: 5 }}
+              // sx={{ pt: 5 }}
               variant={"h6"}
               style={{ color: "#ffffff" }}
             >

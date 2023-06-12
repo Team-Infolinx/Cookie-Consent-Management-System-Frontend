@@ -68,6 +68,7 @@ const CustomerFeedBack = () => {
         direction={"column"}
         justify={"center"}
         alignItems={"center"}
+        item
         lg={12}
         md={12}
         sm={12}

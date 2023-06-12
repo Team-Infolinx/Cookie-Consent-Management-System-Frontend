@@ -27,6 +27,7 @@ function HomeNavBar() {
   return (
     <AppBar
       position="fixed"
+
       sx={{
         backgroundColor:
           scroll > 0
@@ -58,7 +59,7 @@ function HomeNavBar() {
             pt: 2,
           }}
           style={{ flexDirection: "row" }}
-          justifyContent={"center"}
+          justifyContent={"space-between"}
         >
           <Grid
             item

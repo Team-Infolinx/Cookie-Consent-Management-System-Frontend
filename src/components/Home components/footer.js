@@ -8,6 +8,7 @@ import DraftsOutlinedIcon from "@mui/icons-material/DraftsOutlined";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { HashLink } from "react-router-hash-link";
+import {Box} from "@mui/system";
 
 const Footer = () => {
   return (
@@ -36,17 +37,19 @@ const Footer = () => {
           sm={12}
           xs={12}
         >
-          <div className="white logo" style={{ paddingLeft: "15px" }}>
+          <Box sx={{width: {xl:"20vw", lg:"20vw", md:"40vw", sm:"50vw", xs:"60vw"},borderRadius:5,padding:3}}>
+          {/*<div className="white logo" style={{ paddingLeft: "15px" }}>*/}
             <img
               src={logoWhite}
               alt={"logo white"}
-              style={{
-                height: 200,
-                width: 400,
-                marginRight: "1em",
-              }}
+              // style={{
+              //   height: 200,
+              //   width: 400,
+              //   marginRight: "1em",
+              // }}
             ></img>
-          </div>
+          {/*</div>*/}
+          </Box>
           <Typography style={{ color: "#ffffff" }} variant="h5">
             About us
           </Typography>
