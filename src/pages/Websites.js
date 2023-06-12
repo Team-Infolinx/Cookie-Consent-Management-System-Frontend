@@ -14,11 +14,26 @@ function Websites() {
   const [deletingWebsite, setDeletingWebsite] = useState();
   const { getDecodedIDToken } = useAuthContext();
 
-  getDecodedIDToken().then((decodedIDToken) => {
+
+
+  /*getDecodedIDToken().then((decodedIDToken) => {
     setUserId(decodedIDToken.sub);
   }).catch((error) => {
     console.error(error);
-  })
+  })*/
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const decodedIDToken = await getDecodedIDToken();
+        setUserId(decodedIDToken.sub);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     getAllWebsites();

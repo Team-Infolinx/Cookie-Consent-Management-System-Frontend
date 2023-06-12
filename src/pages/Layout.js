@@ -76,14 +76,14 @@ function Layout(props) {
             </Toolbar>
             <Divider />
             <List>
-                {drawerItems.map((object) => (
-                    <ListItem key={object.item} disablePadding color="#004587">
+                {drawerItems.map((drawerItem) => (
+                    <ListItem key={drawerItem.item} disablePadding color="#004587">
                         <ListItemButton
-                            href={object.link}
-                            selected={location.pathname === object.link}
+                            href={drawerItem.link}
+                            selected={location.pathname === drawerItem.link}
                         >
-                            <ListItemIcon>{object.icon}</ListItemIcon>
-                            <ListItemText primary={object.item} />
+                            <ListItemIcon>{drawerItem.icon}</ListItemIcon>
+                            <ListItemText primary={drawerItem.item} />
                         </ListItemButton>
                     </ListItem>
                 ))}
@@ -210,5 +210,6 @@ function Layout(props) {
         </Box>
     );
 }
+
 
 export default Layout;
