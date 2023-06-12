@@ -3,12 +3,13 @@ import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 import { BannerContext } from "./BannerContext";
-import CustSelectBoxBanner from "./SelectBoxBanner";
+import CustSelectBoxBanner from "./customization-common components/SelectBoxBanner";
 import axios from "axios";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import CookieSettingsDialog from "./CookieSettingDialog";
-import BannerContentSelectBox from "./BannerContentSelectBox";
+import BannerContentSelectBox from "./customization-common components/BannerContentSelectBox";
+import baseUrl from "../../../../../config";
 
 const CookieBannner = () => {
 
@@ -43,7 +44,7 @@ const CookieBannner = () => {
     try {
       const websiteID = passedId;
       const result = await axios.get(
-          `http://localhost:8080/api/v1/templates/${websiteID}`
+          `${baseUrl}/api/v1/templates/${websiteID}`
       );
       settemplates(result.data);
 
@@ -67,7 +68,7 @@ const CookieBannner = () => {
     try {
       const websiteId = passedId;
       const response = await axios.get(
-        `http://localhost:8080/api/v1/banners/${websiteId}`
+        `${baseUrl}/api/v1/banners/${websiteId}`
       );
       const result = response.data;
       setBanner(result);
@@ -184,7 +185,7 @@ const CookieBannner = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:8080/api/v1/banners/${websiteID}`,
+        `${baseUrl}/api/v1/banners/${websiteID}`,
         bannerSave
       );
       setSnackbarMessage("Save Completed!");

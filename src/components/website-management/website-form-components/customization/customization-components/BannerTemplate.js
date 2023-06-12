@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Box } from "@mui/system";
 import Typography from "@mui/material/Typography";
-import TemplateRegulationSelectBox from "./TemplateRegulationSelectBox";
+import TemplateRegulationSelectBox from "./customization-common components/TemplateRegulationSelectBox";
 import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import TemplatePopUp from "./TemplatePopUp";
 import { BannerContext } from "./BannerContext";
+import baseUrl from "../../../../../config";
+
 const BannerTemplate = () => {
   const [openPopup, setOpenPopup] = useState(false);
 
@@ -18,7 +20,7 @@ const BannerTemplate = () => {
   const loadTemplates = async () => {
     const websiteID = passedId;
     const result = await axios.get(
-      `http://localhost:8080/api/v1/templates/${websiteID}`
+      `${baseUrl}/api/v1/templates/${websiteID}`
     );
 
     settemplates(result.data);

@@ -11,6 +11,7 @@ import TableHead from "@mui/material/TableHead";
 import TableBody from "@mui/material/TableBody";
 import axios from "axios";
 import { BannerContext } from "./BannerContext";
+import baseUrl from "../../../../../config";
 
 const BannerTemplateTable = () => {
   const [templates, settemplates] = useState([]);
@@ -20,7 +21,7 @@ const BannerTemplateTable = () => {
   const loadTemplates = async () => {
     const websiteID = passedId;
     const result = await axios.get(
-      `http://localhost:8080/api/v1/templates/${websiteID}`
+      `${baseUrl}/api/v1/templates/${websiteID}`
     );
     settemplates(result.data);
   };
@@ -34,7 +35,7 @@ const BannerTemplateTable = () => {
       if (template.templateId === selectedTemplate.templateId) {
         // Set the selected switch to true
         axios.put(
-          `http://localhost:8080/api/v1/templates/default/${selectedTemplate.templateId}`,
+          `${baseUrl}/api/v1/templates/default/${selectedTemplate.templateId}`,
           { templateDefault: "true" }
 
         );
@@ -44,7 +45,7 @@ const BannerTemplateTable = () => {
       } else {
         // Set other switches to false
         axios.put(
-          `http://localhost:8080/api/v1/templates/default/${template.templateId}`,
+          `${baseUrl}/api/v1/templates/default/${template.templateId}`,
           { templateDefault: "false" }
         );
         return { ...template, templateDefault: false }; // Update the template with templateDefault: false

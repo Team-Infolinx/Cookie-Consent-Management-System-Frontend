@@ -88,36 +88,40 @@ const CookieBannerPreview = () => {
                 flexDirection: "column",
                 alignItems: "center",
                 marginBottom: "10px",
+                  alignContent:"space-around",justifyContent:"flex-start",
               }}
             >
-              <div style={{ display: "flex", marginBottom: "10px" }}>
+              <div style={{ display: "flex", marginBottom: "10px",alignContent:"space-around",justifyContent:"flex-start", alignItems:"center",paddingLeft:0}}>
                 <Button
                   name={"Accept all cookies"}
                   style={{
-                    marginRight: 10,
+                    /*marginLeft:-5,*/
+                    marginRight: 17,
                     backgroundColor: "#0077dd",
                     color: "white",
                     border: "none",
                     padding: "8px 16px",
                     fontSize: "11px",
                     cursor: "pointer",
+                    width:  "12pc",
                   }}
                 >
-                  Accept all cookies
+                  Accept all
                 </Button>
                 <Button
                   name={"Necessary cookies only"}
                   style={{
-                    marginRight: 3,
+                    /*marginLeft:50,*/
                     backgroundColor: "#0077dd",
                     color: "white",
                     border: "none",
                     padding: "8px 16px",
                     fontSize: "11px",
                     cursor: "pointer",
+                      width:  "50%",
                   }}
                 >
-                  Necessary cookies only
+                  Reject All Cookies
                 </Button>
               </div>
               <Button

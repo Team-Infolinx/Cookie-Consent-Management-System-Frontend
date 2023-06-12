@@ -7,6 +7,7 @@ import { Button, TextField } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import CancelIcon from "@mui/icons-material/Cancel";
 import axios from "axios";
+import baseUrl from "../../../../../config";
 
 const TemplatePopUp = (props) => {
 
@@ -93,7 +94,7 @@ const TemplatePopUp = (props) => {
       const id = data.templateId;
       await axios
           .put(
-              `http://localhost:8080/api/v1/templates/${id}`,
+              `${baseUrl}/api/v1/templates/${id}`,
               template
           )
           .then(() => getTemps());
