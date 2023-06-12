@@ -8,7 +8,6 @@ import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutl
 import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
 const BannerCustomization = (props) => {
 
-  const [component, setComponent] = useState(<BannerTemplate />);
   const [value, setValue] = useState(0);
 
   const handleNextClick = () => {
@@ -28,7 +27,6 @@ const BannerCustomization = (props) => {
       alignItems="flex-start"
     >
       <Grid className={"tab-tools"} container item direction="column" lg={4}>
-        {/*{component}*/}
           {value === 0 ? <BannerTemplate /> : <CookieBanner />}
         <Box
           sx={{
@@ -46,7 +44,7 @@ const BannerCustomization = (props) => {
         >
 
           <Button
-            variant={"outlined"}
+            variant="outlined"
             style={{ width: "140px", marginRight: 70 }}
             onClick={handleBackClick}
             startIcon={<ArrowBackIosNewOutlinedIcon />}
@@ -65,11 +63,11 @@ const BannerCustomization = (props) => {
       </Grid>
 
       <Grid
-        className={"customization-tabs"}
+        className="customization-tabs"
         container
         item
         direction="column"
-        justify={"center"}
+        justify="center"
         lg={8}
         sx={{ paddingTop: 0,mb:0 }}
 

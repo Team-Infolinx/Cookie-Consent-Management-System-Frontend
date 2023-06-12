@@ -78,7 +78,6 @@ const CookieBannner = () => {
       handleChangeHorizontal(bannerAlignment);
       handleChangeColor(bannerColor);
       handleChangeTextColor(bannerTextColor);
-
     } catch (error) {
       console.error("Error loading banners:", error);
     }

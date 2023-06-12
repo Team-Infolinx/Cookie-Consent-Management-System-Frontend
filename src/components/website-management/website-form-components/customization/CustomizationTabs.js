@@ -23,7 +23,6 @@ export default function CustomizationTabs({ value, setValue }) {
           indicatorColor="secondary"
           textColor="inherit"
           variant="fullWidth"
-          aria-label="full width tabs example"
         >
           <Tab label="Banner Template" />
           <Tab label="Cookie Banner" />
