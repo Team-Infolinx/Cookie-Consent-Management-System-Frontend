@@ -38,17 +38,10 @@ const Footer = () => {
           xs={12}
         >
           <Box sx={{width: {xl:"20vw", lg:"20vw", md:"40vw", sm:"50vw", xs:"60vw"},borderRadius:5,padding:3}}>
-          {/*<div className="white logo" style={{ paddingLeft: "15px" }}>*/}
             <img
               src={logoWhite}
               alt={"logo white"}
-              // style={{
-              //   height: 200,
-              //   width: 400,
-              //   marginRight: "1em",
-              // }}
             ></img>
-          {/*</div>*/}
           </Box>
           <Typography style={{ color: "#ffffff" }} variant="h5">
             About us

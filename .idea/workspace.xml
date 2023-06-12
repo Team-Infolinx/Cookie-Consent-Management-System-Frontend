@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0db3dd35-5049-4186-80d4-68acd89103b6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Home components/aboutUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home components/aboutUs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Home components/features.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home components/features.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Home components/feedBack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home components/feedBack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Home components/footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home components/footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Home components/homeNavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home components/homeNavBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Home components/landingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home components/landingPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,5 +53,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
