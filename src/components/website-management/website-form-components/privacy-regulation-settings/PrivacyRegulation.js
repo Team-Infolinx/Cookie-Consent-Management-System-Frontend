@@ -36,7 +36,7 @@ function PrivacyRegulation(props) {
       });
   }, []);
 
-  const websiteId = 1000;
+  const websiteId = props.websiteId;
 
   const loadPolicies = async () => {
     try {
@@ -88,7 +88,7 @@ function PrivacyRegulation(props) {
       return;
     }
 
-    const websiteId = 1000; // replace with the actual website ID
+    const websiteId = props.websiteId; // replace with the actual website ID
     const regulationId = selectedRegulation.regulationId;
     const alreadyAdded = selectedPolicies.includes(selectedOption);
 
@@ -208,7 +208,7 @@ function PrivacyRegulation(props) {
                 </table>
               ) : (
                 <Alert severity="info">
-                  Your website does not appear to have added any privacy
+                  Currently, your website does not appear to have added any privacy
                   regulations !
                 </Alert>
               )}
