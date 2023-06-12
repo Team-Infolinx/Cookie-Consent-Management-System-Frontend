@@ -6,8 +6,11 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
 import GeneralSettings from "../general-settings/GeneralSettings";
+import BannerCustomization from "../customization/BannerCustomization";
+import {BannerProvider} from "../customization/customization-components/BannerContext";
 import CookiesTab from "../cookies/CookiesTab";
 import Categories from "../categories/Categories";
+import PrivacyRegulation from "../privacy-regulation-settings/PrivacyRegulation";
 import ScriptTab from "../script/ScriptTab";
 
 function TabPanel(props) {
@@ -40,7 +43,7 @@ function a11yProps(index) {
 }
 
 export default function BasicTabs() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState('');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -57,7 +60,7 @@ export default function BasicTabs() {
 
   // WebsiteId and UserID.
   const { state } = useLocation();
-  const [websiteId, setWebsiteId] = React.useState("");
+  const [websiteId, setWebsiteId] = React.useState('');
   const userId = 1000;
 
   React.useEffect(() => {
@@ -106,10 +109,19 @@ export default function BasicTabs() {
         />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <p>Privacy Regulation</p>
+        <PrivacyRegulation
+          websiteId={websiteId}
+          handleNextTab={handleNextTab}
+          handleBackTab={handleBackTab}
+        />
       </TabPanel>
       <TabPanel value={value} index={4}>
-        <p>Banner Customization</p>
+          <BannerProvider websiteId={websiteId}>
+              <BannerCustomization
+                  handleNextTab={handleNextTab}
+                  handleBackTab={handleBackTab}
+              />
+          </BannerProvider>
       </TabPanel>
       <TabPanel value={value} index={5}>
         <ScriptTab websiteId={websiteId} handleBackTab={handleBackTab} />

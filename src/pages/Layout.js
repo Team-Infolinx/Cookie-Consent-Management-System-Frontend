@@ -38,36 +38,31 @@ function Layout(props) {
         setMobileOpen(!mobileOpen);
     }
 
-    const drawerItems = [
-        {
-            item: "Dashboard",
-            icon: <DashboardCustomizeTwoToneIcon />,
-            link: "/user",
-        },
-        {
-            item: "Websites",
-            icon: <WebTwoToneIcon />,
-            link: "/user/websites",
-        },
-        {
-            item: "Analytics",
-            icon: <PollTwoToneIcon />,
-            link: "/user/analytics",
-        },
-    ];
+  const drawerItems = [
+    {
+      item: "Websites",
+      icon: <WebTwoToneIcon />,
+      link: "/user",
+    },
+    {
+      item: "Analytics",
+      icon: <PollTwoToneIcon />,
+      link: "/user/analytics",
+    },
+  ];
 
-    const drawerItemsBottom = [
-        {
-            item: "Settings",
-            icon: <SettingsTwoToneIcon />,
-            link: "/user/settings",
-        },
-        {
-            item: "Logout",
-            icon: <ExitToAppTwoToneIcon />,
-            link: "",
-        },
-    ];
+  const drawerItemsBottom = [
+    {
+      item: "Settings",
+      icon: <SettingsTwoToneIcon />,
+      link: "/user/settings",
+    },
+    {
+      item: "Logout",
+      icon: <ExitToAppTwoToneIcon />,
+      link: "/user/logout",
+    },
+  ];
 
     const drawer = (
         <div>
