@@ -88,7 +88,7 @@ function PrivacyRegulation(props) {
       return;
     }
 
-    const websiteId = props.websiteId;
+    const websiteId = props.websiteId; // replace with the actual website ID
     const regulationId = selectedRegulation.regulationId;
     const alreadyAdded = selectedPolicies.includes(selectedOption);
 
