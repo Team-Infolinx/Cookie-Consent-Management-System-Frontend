@@ -9,6 +9,7 @@ import AddIcon from "@mui/icons-material/Add";
 import axios from "axios";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
+import { Undo } from "@mui/icons-material";
 import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 
@@ -16,6 +17,7 @@ function PrivacyRegulation(props) {
   const [selectedOption, setSelectedOption] = React.useState("");
   const [selectedPolicies, setSelectedPolicies] = React.useState([]);
   const [regulations, setRegulations] = useState([]);
+  const [alreadyAddedAlert, setAlreadyAddedAlert] = useState(false);
   const [error, setError] = useState(false);
 
   const handleChange = (event) => {
@@ -41,14 +43,16 @@ function PrivacyRegulation(props) {
   const loadPolicies = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/v1/website/${websiteId}/privacy-regulations`
+        `http://localhost:8080/api/v1/website-management/${websiteId}/privacy-regulations`
       );
-      const { privacyRegulations } = response.data[0];
-      const selectedPolicies = privacyRegulations.map(
-        (regulation) => regulation.regulationName
-      );
-      setSelectedPolicies(selectedPolicies);
-      console.log(response.data);
+      const privacyRegulations = response.data;
+      console.log(privacyRegulations);
+      if (privacyRegulations) {
+        const selectedPolicies = privacyRegulations.map(
+          (regulation) => regulation.regulationName
+        );
+        setSelectedPolicies(selectedPolicies);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -104,6 +108,7 @@ function PrivacyRegulation(props) {
       }
     } else {
       setError(true);
+      setAlreadyAddedAlert(true);
     }
   };
 
@@ -113,7 +118,12 @@ function PrivacyRegulation(props) {
         `http://localhost:8080/api/v1/website-management/${websiteId}/privacy-regulation-management/${regulationId}`
       );
       const updatedSelectedPolicies = selectedPolicies.filter(
-        (policy) => policy.regulationId !== regulationId
+        (regulationName) => {
+          const policy = regulations.find(
+            (regulation) => regulation.regulationName === regulationName
+          );
+          return policy.regulationId !== regulationId;
+        }
       );
       setSelectedPolicies(updatedSelectedPolicies);
     } catch (error) {
@@ -170,13 +180,32 @@ function PrivacyRegulation(props) {
           Add
         </Button>
       </div>
-      <div>
-        <Paper elevation={2} sx={{ p: 2 }}>
-          <h3> Description</h3>
-          <p>{getDescription()}</p>
-        </Paper>
-        <p></p>
+      {alreadyAddedAlert && (
+        <Alert
+          severity="warning"
+          action={
+            <Button
+              color="inherit"
+              size="small"
+              onClick={() => setAlreadyAddedAlert(false)}
+            >
+              UNDO
+            </Button>
+          }
+	style={{ marginBottom: '1rem' }}
+        >
+          This privacy regulation is already added!
+        </Alert>
+      )}
 
+      <div>
+        <div style={{ marginBottom: "1rem" }}>
+          <Paper elevation={2} sx={{ p: 2 }}>
+            <h3> Description</h3>
+            <p>{getDescription()}</p>
+          </Paper>
+        </div>
+    
         <Paper elevation={2} sx={{ p: 3 }}>
           <h3>Added Privacy Regulations</h3>
           <Box>
@@ -187,29 +216,38 @@ function PrivacyRegulation(props) {
                     <tr></tr>
                   </thead>
                   <tbody>
-                    {selectedPolicies.map((regulationName, index) => (
-                      // <Paper key={index} sx={{ p: 2, mb: 2 , width: "30%" }}>
-                      <tr>
-                        <td key={index}>{regulationName}</td>
-                        <td>
-                          <Button
-                            className="btn btn-danger mx-2"
-                            variant="contained"
-                            sx={{ bgcolor: "#fa344f", margin: "0 100px" }}
-                            // onClick={() => deletePrivacyRegulation(websiteId,policy.regulationId)}
-                          >
-                            Delete
-                          </Button>
-                        </td>
-                      </tr>
-                      // </Paper>
-                    ))}
+                    {selectedPolicies.map((regulationName, index) => {
+                      const policy = regulations.find(
+                        (regulation) =>
+                          regulation.regulationName === regulationName
+                      );
+                      return (
+                        <tr key={index}>
+                          <td>{regulationName}</td>
+                          <td>
+                            <Button
+                              className="btn btn-danger mx-2"
+                              variant="contained"
+                              sx={{ bgcolor: "#fa344f", margin: "0 100px" }}
+                              onClick={() =>
+                                deletePrivacyRegulation(
+                                  websiteId,
+                                  policy.regulationId
+                                )
+                              }
+                            >
+                              Delete
+                            </Button>
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               ) : (
                 <Alert severity="info">
-                  Currently, your website does not appear to have added any privacy
-                  regulations !
+                  Currently, your website does not appear to have added any
+                  privacy regulations !
                 </Alert>
               )}
             </Stack>
@@ -217,21 +255,21 @@ function PrivacyRegulation(props) {
         </Paper>
 
         <Box sx={{ mt: 3, display: "flex", justifyContent: "space-between" }}>
-        <Button
-          startIcon={<ArrowBackIosNewOutlinedIcon />}
-          onClick={props.handleBackTab}
-        >
-          Back
-        </Button>
-        <Button
-          endIcon={<NavigateNextOutlinedIcon />}
-          variant="contained"
-          sx={{ bgcolor: "#00A5FF" }}
-          onClick={props.handleNextTab}
-        >
-          Save Changes
-        </Button>
-      </Box>
+          <Button
+            startIcon={<ArrowBackIosNewOutlinedIcon />}
+            onClick={props.handleBackTab}
+          >
+            Back
+          </Button>
+          <Button
+            endIcon={<NavigateNextOutlinedIcon />}
+            variant="contained"
+            sx={{ bgcolor: "#00A5FF" }}
+            onClick={props.handleNextTab}
+          >
+            Save Changes
+          </Button>
+        </Box>
       </div>
     </>
   );
