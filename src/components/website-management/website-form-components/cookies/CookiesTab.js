@@ -136,6 +136,24 @@ export default function CookiesTab(props) {
     setCookies(updatedCookies);
   }
 
+  function addScanedCookies(newCookies) {
+    setCookies((prev) => [...prev, ...newCookies]);
+  }
+
+  async function handleScanCookies() {
+    let websiteId = props.websiteId;
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/api/v1/search-cookies/${websiteId}`
+      );
+      if (response.data) {
+        addScanedCookies(response.data);
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
   return (
     <Box>
       <Box
@@ -154,6 +172,7 @@ export default function CookiesTab(props) {
           variant="contained"
           sx={{ bgcolor: "#00A5FF" }}
           startIcon={<DocumentScannerIcon />}
+          onClick={handleScanCookies}
         >
           Scan Cookies
         </Button>
