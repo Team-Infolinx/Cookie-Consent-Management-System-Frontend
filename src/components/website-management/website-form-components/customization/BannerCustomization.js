@@ -35,7 +35,7 @@ const BannerCustomization = (props) => {
             paddingTop: 5,
             paddingLeft: 5,
             height: "115px",
-            width: "450px",
+            width: "330px",
             backgroundColor: "#fefefe",
             boxShadow: "4px 4px 20px 4px rgba(0, 0, 0, 0.25)",
             borderRadius: 5,
@@ -45,7 +45,7 @@ const BannerCustomization = (props) => {
 
           <Button
             variant="outlined"
-            style={{ width: "140px", marginRight: 70 }}
+            style={{ width: "110px", marginRight: 70 }}
             onClick={handleBackClick}
             startIcon={<ArrowBackIosNewOutlinedIcon />}
           >
@@ -53,7 +53,7 @@ const BannerCustomization = (props) => {
           </Button>
           <Button
             variant={"contained"}
-            style={{ width: "140px" }}
+            style={{ width: "110px" }}
             onClick={handleNextClick}
             endIcon={<NavigateNextOutlinedIcon />}
           >

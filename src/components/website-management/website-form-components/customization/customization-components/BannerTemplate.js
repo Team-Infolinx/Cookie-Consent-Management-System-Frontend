@@ -68,7 +68,7 @@ const BannerTemplate = () => {
       <Box
         sx={{
           backgroundColor: "#fefefe",
-          width: "450px",
+          width: "320px",
           height: "650px",
           align: "center",
           margin: 3,
@@ -91,20 +91,20 @@ const BannerTemplate = () => {
             paddingTop: 10,
             paddingBottom: 10,
             textAlign: "right",
-            paddingRight: 45,
+            paddingRight: 20,
           }}
         >
           <TemplateRegulationSelectBox
             name={"Privacy regulation"}
             items={regulationValues}
-            width={140}
+            width={160}
             fun={choosenTemplate}
             selectedTemplate={selectedTemplate}
           />
         </div>
         <div style={{ paddingTop: 10, paddingBottom: 10 }}>
           <TextField
-            sx={{ width: "40ch" }}
+            sx={{ width: "30ch" }}
             id={String(selectedTemplate?.templateId) || ""}
             label="Template Name"
             variant="outlined"
@@ -114,7 +114,7 @@ const BannerTemplate = () => {
         </div>
         <div style={{ paddingTop: 10, paddingBottom: 10 }}>
           <TextField
-            sx={{ width: "40ch" }}
+            sx={{ width: "30ch" }}
             id={String(selectedTemplate?.templateId) || ""}
             label="Privacy Regulation Type"
             variant="outlined"
@@ -124,7 +124,7 @@ const BannerTemplate = () => {
         </div>
         <div style={{ paddingTop: 10, paddingBottom: 10 }}>
           <TextField
-            sx={{ width: "40ch" }}
+            sx={{ width: "30ch" }}
             id={String(selectedTemplate?.templateId) || ""}
             label="Cookie policy link"
             variant="outlined"
@@ -134,7 +134,7 @@ const BannerTemplate = () => {
         </div>
         <div style={{ paddingTop: 10, paddingBottom: 10 }}>
           <TextField
-            sx={{ width: "40ch" }}
+            sx={{ width: "30ch" }}
             id={String(selectedTemplate?.templateId) || ""}
             label="Content"
             variant="outlined"

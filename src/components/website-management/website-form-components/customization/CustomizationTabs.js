@@ -15,7 +15,8 @@ export default function CustomizationTabs({ value, setValue }) {
   };
 
   return (
-    <Box sx={{ bgcolor: "background.paper", width: {xl:"1000px" , lg:"737px"}}}>
+    <Box sx={{width: {xl:"730px" , lg:"400px",md:"300px"}}}>
+      {/* sx={{ bgcolor: "background.paper", width: {xl:"1000px" , lg:"400px",md:"300px"}}} */}
       <AppBar position="static">
         <Tabs
           value={value}
