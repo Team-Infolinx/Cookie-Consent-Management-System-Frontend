@@ -7,11 +7,12 @@ import Box from "@mui/material/Box";
 
 import GeneralSettings from "../general-settings/GeneralSettings";
 import BannerCustomization from "../customization/BannerCustomization";
-import {BannerProvider} from "../customization/customization-components/BannerContext";
+import { BannerProvider } from "../customization/customization-components/BannerContext";
 import CookiesTab from "../cookies/CookiesTab";
 import Categories from "../categories/Categories";
 import PrivacyRegulation from "../privacy-regulation-settings/PrivacyRegulation";
 import ScriptTab from "../script/ScriptTab";
+import { useAuthContext } from "@asgardeo/auth-react";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -42,8 +43,8 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs() {
-  const [value, setValue] = React.useState('');
+export default function BasicTabs(props) {
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -60,8 +61,9 @@ export default function BasicTabs() {
 
   // WebsiteId and UserID.
   const { state } = useLocation();
-  const [websiteId, setWebsiteId] = React.useState('');
-  const userId = 1000;
+  const [websiteId, setWebsiteId] = React.useState("");
+  const userId = props.userId;
+  const { getDecodedIDToken } = useAuthContext();
 
   React.useEffect(() => {
     if (state !== null) {
@@ -116,12 +118,12 @@ export default function BasicTabs() {
         />
       </TabPanel>
       <TabPanel value={value} index={4}>
-          <BannerProvider websiteId={websiteId}>
-              <BannerCustomization
-                  handleNextTab={handleNextTab}
-                  handleBackTab={handleBackTab}
-              />
-          </BannerProvider>
+        <BannerProvider websiteId={websiteId}>
+          <BannerCustomization
+            handleNextTab={handleNextTab}
+            handleBackTab={handleBackTab}
+          />
+        </BannerProvider>
       </TabPanel>
       <TabPanel value={value} index={5}>
         <ScriptTab websiteId={websiteId} handleBackTab={handleBackTab} />

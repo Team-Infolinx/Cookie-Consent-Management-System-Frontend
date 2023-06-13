@@ -115,7 +115,6 @@ export default function CookiesTab(props) {
       }
     } else {
       try {
-        console.log(cookie);
         const response = await axios.post(
           `http://localhost:8080/api/v1/websites/${websiteId}/cookies`,
           cookie
