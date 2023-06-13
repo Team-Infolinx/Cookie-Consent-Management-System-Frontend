@@ -122,7 +122,7 @@ const CookieBannner = () => {
       setPositionValue(value);
     }
     if (value === "Bottom") {
-      setTop(280);
+      setTop(320);
       setPositionValue(value);
     }
   }
@@ -133,11 +133,11 @@ const CookieBannner = () => {
       setAlignmentValue(value);
     }
     if (value === "Center") {
-      setLeft(240);
+      setLeft(190);
       setAlignmentValue(value);
     }
     if (value === "Right") {
-      setLeft(475);
+      setLeft(325);
       setAlignmentValue(value);
     }
   }
@@ -224,12 +224,11 @@ const CookieBannner = () => {
       <Box
         sx={{
           backgroundColor: "#fefefe",
-          width: "450px",
-          height: "650px",
+          width:{xl:"350px" , lg:"350px"},
+          // height: "650px",
           align: "center",
           margin: 3,
-          paddingTop: 5,
-          paddingLeft: 5,
+          padding:5,
           borderRadius: 5,
           boxShadow: "4px 4px 20px 4px rgba(0, 0, 0, 0.25)",
           mb: 8,
@@ -246,7 +245,7 @@ const CookieBannner = () => {
           <BannerContentSelectBox
               name={"Banner Content"}
               items={templateValues}
-              width={300}
+              width={250}
               fun={choosenTemplate}
               selectedTemplate={selectedTemplate}
           ></BannerContentSelectBox>
@@ -257,7 +256,7 @@ const CookieBannner = () => {
             name={"Banner Position"}
             fun={handleChangeTop}
             items={bannerPosition}
-            width={300}
+            width={250}
             defaultValue={positionValue}
           />
         </div>
@@ -266,7 +265,7 @@ const CookieBannner = () => {
             name="Banner Alignment"
             fun={handleChangeHorizontal}
             items={bannerAlignment}
-            width={300}
+            width={250}
             defaultValue={alignmentValue}
           />
         </div>
@@ -275,7 +274,7 @@ const CookieBannner = () => {
             name="Banner Colour"
             fun={handleChangeColor}
             items={bannerColor}
-            width={300}
+            width={250}
             defaultValue={colorValue}
           />
         </div>
@@ -284,7 +283,7 @@ const CookieBannner = () => {
               name="Banner Text Colour"
               fun={handleChangeTextColor}
               items={bannerTextColor}
-              width={300}
+              width={250 }
               defaultValue={textColorValue}
           />
         </div>
@@ -292,18 +291,17 @@ const CookieBannner = () => {
           style={{
             display: "flex",
             justifyContent: "flex-end",
-            paddingTop: 20,
-            paddingRight: 60,
+            
           }}
         >
           <div style={{ marginRight: 10 }}>
             <Button variant="contained" onClick={handleCustomizeClick}>
-              Customize Settings
+              View More
             </Button>
           </div>
           <div>
             <Button variant="contained" onClick={handlesave}>
-              Save Banner
+              Save
             </Button>
           </div>
           <CookieSettingsDialog open={showDialog} onClose={handleCloseClick} />

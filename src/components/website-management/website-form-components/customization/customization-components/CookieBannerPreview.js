@@ -29,7 +29,7 @@ const CookieBannerPreview = () => {
       >
         <div
           style={{
-            width: "900px",
+            width:"700px",
             height: "600px",
             backgroundColor: "white",
             padding: 15,
@@ -41,8 +41,10 @@ const CookieBannerPreview = () => {
           <div
             id="cookie-banner"
             style={{
-              width: "400px",
-              height: "300px",
+              // width: "400px",
+              // height: "300px",
+              width: "350px",
+              height: "250px",
               backgroundColor: color,
               alignSelf: "right",
               position: "absolute",
@@ -63,7 +65,7 @@ const CookieBannerPreview = () => {
                 style={{
                   fontWeight: "bold",
                   color: textColor,
-                  fontSize: "18px",
+                  fontSize: "15px",
                   paddingLeft: 20,
                 }}
               >
@@ -72,7 +74,7 @@ const CookieBannerPreview = () => {
               <h6
                 style={{
                   color: textColor,
-                  fontSize: "14px",
+                  fontSize: "11px",
                   marginBottom: "5px",
                   paddingLeft: 20,
                   paddingRight: 5,
@@ -103,7 +105,7 @@ const CookieBannerPreview = () => {
                     padding: "8px 16px",
                     fontSize: "11px",
                     cursor: "pointer",
-                    width:  "12pc",
+                    width:  "8pc",
                   }}
                 >
                   Accept all
@@ -118,10 +120,12 @@ const CookieBannerPreview = () => {
                     padding: "8px 16px",
                     fontSize: "11px",
                     cursor: "pointer",
-                      width:  "50%",
+                      // width:  "50%",
+                      width:  "8pc",
+
                   }}
                 >
-                  Reject All Cookies
+                  Reject All
                 </Button>
               </div>
               <Button
@@ -133,7 +137,7 @@ const CookieBannerPreview = () => {
                   padding: "8px 16px",
                   fontSize: "11px",
                   cursor: "pointer",
-                  width: "95%",
+                  width: "85%",
                 }}
                 onClick={handleCustomizeClick}
               >
