@@ -85,7 +85,7 @@ const BannerTemplateTable = () => {
         Bannner Templates
       </Typography>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <Table sx={{ minWidth: 300 }} aria-label="customized table">
           <TableHead>
             <TableRow>
               <StyledTableCell>Template Name</StyledTableCell>
