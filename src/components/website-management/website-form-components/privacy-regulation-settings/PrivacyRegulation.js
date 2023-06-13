@@ -192,7 +192,7 @@ function PrivacyRegulation(props) {
               UNDO
             </Button>
           }
-	style={{ marginBottom: '1rem' }}
+          style={{ marginBottom: "1rem" }}
         >
           This privacy regulation is already added!
         </Alert>
@@ -200,12 +200,12 @@ function PrivacyRegulation(props) {
 
       <div>
         <div style={{ marginBottom: "1rem" }}>
-          <Paper elevation={2} sx={{ p: 2 }}>
+          <Paper elevation={2} sx={{ p: 2, pb: 5 }}>
             <h3> Description</h3>
-            <p>{getDescription()}</p>
+            {getDescription()}
           </Paper>
         </div>
-    
+
         <Paper elevation={2} sx={{ p: 3 }}>
           <h3>Added Privacy Regulations</h3>
           <Box>
