@@ -88,7 +88,7 @@ export default function ScriptTab(props) {
         >
           Back
         </Button>
-        <Link to={"/user/websites"}>
+        <Link to={"/user"}>
           <Button
             endIcon={<NavigateNextOutlinedIcon />}
             variant="contained"

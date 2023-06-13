@@ -9,34 +9,28 @@ import { useAuthContext } from "@asgardeo/auth-react";
 
 function Websites() {
   const [websites, setWebsites] = useState([]);
-  const [userId, setUserId] = useState("");
   const [isOpenWebsiteDeleteDialog, setIsOpenWebsiteDialog] = useState(false);
   const [deletingWebsite, setDeletingWebsite] = useState();
   const { getDecodedIDToken } = useAuthContext();
-
-
-
-  /*getDecodedIDToken().then((decodedIDToken) => {
-    setUserId(decodedIDToken.sub);
-  }).catch((error) => {
-    console.error(error);
-  })*/
+  const { state } = useAuthContext();
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const decodedIDToken = await getDecodedIDToken();
-        setUserId(decodedIDToken.sub);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, []);
+    if (state.isAuthenticated) {
+      getDecodedIDToken()
+        .then((decodedIDToken) => {
+          setUserId(decodedIDToken.sub);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [state]);
 
   useEffect(() => {
-    getAllWebsites();
+    if (userId) {
+      getAllWebsites();
+    }
   }, [userId]);
 
   async function getAllWebsites() {

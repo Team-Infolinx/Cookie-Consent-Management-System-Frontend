@@ -10,13 +10,13 @@ const config = {
   signOutRedirectURL: "http://localhost:3000/",
   clientID: "mggwJwJ0Wob9M161uzaWA8Yl1Pga",
   baseUrl: "https://api.asgardeo.io/t/org80k8n",
-  scope: [ "openid","profile" ]
+  scope: ["openid", "profile"],
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <AuthProvider config={ config }>
+  <AuthProvider config={config}>
     {
       <React.StrictMode>
         <App />
