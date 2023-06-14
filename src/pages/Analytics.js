@@ -39,8 +39,6 @@ export default function Dashboard() {
     }
   }, [state]);
 
-  console.log("This is user Id" + userId);
-
   const handleChange = (event) => {
     setselectedWebsiteId(event.target.value);
     loadNoOfCookies(event.target.value);
@@ -91,22 +89,24 @@ export default function Dashboard() {
       `http://localhost:8080/api/v1/users/${id}/websites`
     );
     setWebsites(result.data);
-    console.log(JSON.stringify(result.data));
   };
 
   const loadWebsiteVisitDates = async (id) => {
+    console.log("id", id);
     const result = await axios.get(
       "http://localhost:8080/api/v1/user/getWebsiteVisitsdates/" + id
     );
     setWebsitevisitdate(result.data);
-    console.log("date list" + result.data);
+    console.log("date list", websitevisitdate);
   };
 
   const loadNoOfWebsiteVisits = async (id) => {
     const result = await axios.get(
       "http://localhost:8080/api/v1/user/getWebsiteVisitsCount/" + id
     );
+    console.log("visits ", result.data);
     setNoOfWebsiteVisits(result.data);
+    console.log("state ", noOfWebsiteVisits);
   };
 
   return (
@@ -175,26 +175,13 @@ export default function Dashboard() {
               <AppBarChart
                 title="Website Visits"
                 subheader="(+43%) than last year"
-                chartLabels={[
-                  "01/01/2023",
-                  "02/01/2023",
-                  "03/01/2023",
-                  "04/01/2023",
-                  "05/01/2023",
-                  "06/01/2023",
-                  "07/01/2023",
-                  "08/01/2023",
-                  "09/01/2023",
-                  "10/01/2023",
-                  "11/01/2023",
-                  "12/01/2023",
-                ]}
+                chartLabels={websitevisitdate}
                 chartData={[
                   {
                     name: "Website A",
                     type: "line",
                     fill: "solid",
-                    data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
+                    data: noOfWebsiteVisits,
                   },
                 ]}
               />
